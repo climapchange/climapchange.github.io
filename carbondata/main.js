@@ -1,6 +1,6 @@
 let baselayers = {
     standard: L.tileLayer.provider("OpenStreetMap.DE"),
-    darkMode: L.tileLayer.provider("Stadia.AlidadeSmoothDark"),
+    darkMode: L.tileLayer.provider("Stamen.TonerBackground"),
     terrain: L.tileLayer.provider("OpenTopoMap"),
 };
 
