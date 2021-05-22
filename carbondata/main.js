@@ -26,31 +26,62 @@ let layerControl = L.control.layers({
     "CO2": overlays.coTwo,
 }).addTo(map);
 
+//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
+L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
+map.fitBounds(overlays.coTwo.getBounds());
+overlays.coTwo.addTo(map)
 
-//console.log('CO2-Daten: ', CODATA[0].Afghanistan.data[70].cement_co2);
 
-// Länderliste abrufen
-//console.log('CO2-Daten: ', CODATA[0].country);
+
+//CO2-Daten abrufen
 
 let countries = CODATA[0].country;
 console.log('Länder: ', countries)
 
-//So komme ich an die CO2-Daten
-console.log(CODATA[0].country.Albania.data[86].co2)
+//So komme ich an die CO2-Daten eines Landes
+//console.log(CODATA[0].country.Albania.data[86].co2)
 
 //um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen. Das irgendwie in einer Funktion machen
-console.log(CODATA[0].country.Albania.data.length)
 let lastYear = CODATA[0].country.Albania.data.length-1
-console.log('Die Anzahl der Jahre betraegt: ',lastYear)
+console.log('Die Zahl des letzten gelisteten Landes ist: ',lastYear)
 
-console.log(CODATA[0].country.Albania.data[lastYear].co2)
+//So werden die Daten für das Letzte Jahr abgerufen. Jetzt muss nur noch das Land variabel sein
+let co2 = CODATA[0].country.Albania.data[lastYear].co2
+console.log('Die Emissionen von Albanien betragen in [Einheit]:',co2)
 
+//So werden die ISO-Daten abgerufen. Land muss variabel
+let iso = CODATA[0].country.Albania.iso_code
+console.log('CO2-Daten: ISO-Code:',iso)
+
+
+
+
+//Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
+let polys = COUNTRY[0].features[0].properties.iso_a3;
+console.log('Poly-Länder: ISO-Code: ', polys)
+
+console.log('Die Anzahl der Poly-Länder beträgt: ',COUNTRY[0].features.length)
+
+
+//Jetzt braucht es eine Funktion, die beim Anklicken oder beim Einfärben die Ländernamen oder codes Ermittelt und danach den Eintrag in den CO2-Daten heraussucht
+
+
+//PopUp
+overlays.coTwo.bindPopup(`
+<h3>Name des Landes</h3>
+    `);
+
+
+
+
+
+//CODE-Sammlung
 
 //for (let i = 0; i < CODATA[0].length; i++){
 //    console.log(array[i]);
 //  }
 
-
+/*
 const selectedCountry = "data";
 
 for (let coTwo of CODATA) {
@@ -61,14 +92,8 @@ for (let coTwo of CODATA) {
     }
 console.log(selected);
 }
+*/
 
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
-L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
-map.fitBounds(overlays.coTwo.getBounds());
 
-overlays.coTwo.addTo(map)
 
-//PopUp mit Name, max_height, min_height, total_dist
-overlays.coTwo.bindPopup(`
-<h3>Name des Landes</h3>
-    `);
+
