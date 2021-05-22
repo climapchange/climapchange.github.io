@@ -69,6 +69,7 @@ console.log('Die Anzahl der Poly-Länder beträgt: ',COUNTRY[0].features.length)
 //PopUp
 overlays.coTwo.bindPopup(`
 <h3>Name des Landes</h3>
+//Hier Zugriff auf die Daten mit $?
     `);
 
 
