@@ -26,7 +26,7 @@ let layerControl = L.control.layers({
     "CO2": overlays.coTwo,
 }).addTo(map);
 
-//So komme ich an die CO2-Daten
+
 //console.log('CO2-Daten: ', CODATA[0].Afghanistan.data[70].cement_co2);
 
 // Länderliste abrufen
@@ -35,7 +35,16 @@ let layerControl = L.control.layers({
 let countries = CODATA[0].country;
 console.log('Länder: ', countries)
 
-console.log(CODATA.length);
+//So komme ich an die CO2-Daten
+console.log(CODATA[0].country.Albania.data[86].co2)
+
+//um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen. Das irgendwie in einer Funktion machen
+console.log(CODATA[0].country.Albania.data.length)
+let lastYear = CODATA[0].country.Albania.data.length-1
+console.log('Die Anzahl der Jahre betraegt: ',lastYear)
+
+console.log(CODATA[0].country.Albania.data[lastYear].co2)
+
 
 //for (let i = 0; i < CODATA[0].length; i++){
 //    console.log(array[i]);
