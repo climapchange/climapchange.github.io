@@ -38,41 +38,40 @@ overlays.coTwo.addTo(map)
 let countries = CODATA[0].country;
 console.log('Länder: ', countries)
 
-//So komme ich an die CO2-Daten eines Landes
-//console.log(CODATA[0].country.Albania.data[86].co2)
-
-//um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen. Das irgendwie in einer Funktion machen
-let lastYear = CODATA[0].country.Albania.data.length-1
-console.log('Die Zahl des letzten gelisteten Landes ist: ',lastYear)
-
-//So werden die Daten für das Letzte Jahr abgerufen. Jetzt muss nur noch das Land variabel sein
-let co2 = CODATA[0].country.Albania.data[lastYear].co2
-console.log('Die Emissionen von Albanien betragen in [Einheit]:',co2)
-
-//So werden die ISO-Daten abgerufen. Land muss variabel
-let iso = CODATA[0].country.Albania.iso_code
-console.log('CO2-Daten: ISO-Code:',iso)
-
-
-
 
 //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
-let polys = COUNTRY[0].features[0].properties.iso_a3;
-console.log('Poly-Länder: ISO-Code: ', polys)
+let polyName = COUNTRY[0].features[0].properties.formal_en;
+console.log('polyName: ',polyName)
 
-console.log('Die Anzahl der Poly-Länder beträgt: ',COUNTRY[0].features.length)
+//um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen.
+let lastYear = CODATA[0].country[polyName].data.length - 1
+console.log('Die Zahl des letzten gelisteten Jahres ist: ', lastYear)
 
+//Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
+let coSelect = CODATA[0].country[polyName].data[lastYear].co2
+console.log('Die CO2-Daten des gewähten Landes beträgt: ',coSelect)
+
+//So werden die ISO-Daten abgerufen. Land muss variabel
+let iso = CODATA[0].country[polyName].iso_code
+console.log('Der ISO-Code aus den CO2Daten lautet:', iso)
+
+//Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
+let polyIso = COUNTRY[0].features[0].properties.iso_a3;
+console.log('Der ISO-Code aus den Poly-Daten lautet: ', polyIso)
+
+
+//console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
 
 //Jetzt braucht es eine Funktion, die beim Anklicken oder beim Einfärben die Ländernamen oder codes Ermittelt und danach den Eintrag in den CO2-Daten heraussucht
 
 
 //PopUp
 overlays.coTwo.bindPopup(`
-<h3>Name des Landes</h3>
-//Hier Zugriff auf die Daten mit $?
+<h3>${COUNTRY[0].features[0].properties.formal_en}</h3>
+<h1>${overlays.coTwo[0]}</h1>
     `);
 
-
+//Hier Zugriff auf die Daten mit $?
 
 
 
@@ -83,6 +82,14 @@ overlays.coTwo.bindPopup(`
 //  }
 
 /*
+function onEachFeature(feature, layer) {
+    layer.on('click', function (e)) {
+        return(feature )
+    }
+}
+
+
+
 const selectedCountry = "data";
 
 for (let coTwo of CODATA) {
@@ -94,7 +101,3 @@ for (let coTwo of CODATA) {
 console.log(selected);
 }
 */
-
-
-
-
