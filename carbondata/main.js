@@ -41,7 +41,6 @@ console.log('Länder: ', countries)
 //Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
 //console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
 //console.log(COUNTRY[0].features)
-
 let polyNr = 50
 console.log(polyNr)
 
@@ -61,19 +60,19 @@ let lastYear = CODATA[0].country[polyName].data.length - 1
 console.log('Die Array-Nr. des letzten gelisteten Jahres ist: ',lastYear)
 
 let year = CODATA[0].country[polyName].data[lastYear].year
-console.log('Die Daten beziehen sich auf das Jahr: ',year)
+console.log('Die Daten beziehen sich auf das Jahr',year)
 
 //Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
 let coSelect = CODATA[0].country[polyName].data[lastYear].co2
-console.log('Die CO2-Daten des gewähten Landes betragen: ',coSelect)
+console.log('Die jährliche produktionsbedingte CO2-Emission beträgt',coSelect, 'millionen Tonnen')
 
 //So werden die ISO-Daten abgerufen. Land muss variabel
 let iso = CODATA[0].country[polyName].iso_code
-console.log('Der ISO-Code aus den CO2Daten lautet: ',iso)
+console.log('Der ISO-Code aus den CO2-Daten lautet:',iso)
 
 //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
 let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
-console.log('Der ISO-Code aus den Poly-Daten lautet: ',polyIso)
+console.log('Der ISO-Code aus den Poly-Daten lautet:',polyIso)
 
 
 
@@ -86,34 +85,3 @@ overlays.coTwo.bindPopup(`
 <h3>${COUNTRY[0].features[0].properties.formal_en}</h3>
 <h1>${overlays.coTwo[0]}</h1>
     `);
-
-//Hier Zugriff auf die Daten mit $?
-
-
-
-//CODE-Sammlung
-
-//for (let i = 0; i < CODATA[0].length; i++){
-//    console.log(array[i]);
-//  }
-
-/*
-function onEachFeature(feature, layer) {
-    layer.on('click', function (e)) {
-        return(feature )
-    }
-}
-
-
-
-const selectedCountry = "data";
-
-for (let coTwo of CODATA) {
-    if (selectedCountry == coTwo) {
-        selected = 'selected';
-    } else {
-        selected = 'no';
-    }
-console.log(selected);
-}
-*/
