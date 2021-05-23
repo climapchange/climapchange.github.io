@@ -38,9 +38,14 @@ overlays.coTwo.addTo(map)
 let countries = CODATA[0].country;
 console.log('Länder: ', countries)
 
+//Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
+//console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
+//console.log(COUNTRY[0].features)
+let polyNr = 231
+console.log(polyNr)
 
 //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
-let polyName = COUNTRY[0].features[0].properties.formal_en;
+let polyName = COUNTRY[0].features[polyNr].properties.formal_en;
 console.log('polyName: ',polyName)
 
 //um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen.
@@ -49,20 +54,20 @@ console.log('Die Zahl des letzten gelisteten Jahres ist: ', lastYear)
 
 //Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
 let coSelect = CODATA[0].country[polyName].data[lastYear].co2
-console.log('Die CO2-Daten des gewähten Landes beträgt: ',coSelect)
+console.log('Die CO2-Daten des gewähten Landes betragen: ',coSelect)
 
 //So werden die ISO-Daten abgerufen. Land muss variabel
 let iso = CODATA[0].country[polyName].iso_code
 console.log('Der ISO-Code aus den CO2Daten lautet:', iso)
 
 //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
-let polyIso = COUNTRY[0].features[0].properties.iso_a3;
+let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
 console.log('Der ISO-Code aus den Poly-Daten lautet: ', polyIso)
 
 
-//console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
+//Das klappt schon ganz gut! Allerdings scheinen die Namen bei COUNTRY nicht immer denen bei CODATA zu entsprechen. Beispiel polyNr = 1. Hier ist dann der ISO-Code nötig, was das ganze komplzierter macht, weil es innerhalb von CODATA tief genested ist und z.B über .find() gesucht werden muss
 
-//Jetzt braucht es eine Funktion, die beim Anklicken oder beim Einfärben die Ländernamen oder codes Ermittelt und danach den Eintrag in den CO2-Daten heraussucht
+
 
 
 //PopUp
