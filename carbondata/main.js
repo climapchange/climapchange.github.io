@@ -62,7 +62,9 @@ function highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     };
-    info.update(layer.feature.properties);
+    info.update(layer.feature);
+    //console.log((layer.feature))
+    //das wird runtergegeben an Infoanzeige
 }
 //Highlight zuruecksetzen beim weggehen mit der Maus
 function resetHighlight(e) {
@@ -102,10 +104,11 @@ geojson = L.geoJson(COUNTRY, {
 //CO2-Daten abrufen
 let countries = CODATA[0].country;
 //console.log('Länder: ', countries)
+//console.log(COUNTRY[0].features)
 
 //Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
 //Probleme bei 10 "Curaçao", 11 "Cayman Islands" nicht in Liste
-let polyNr = 20
+let polyNr = 40
 console.log('Die ausgewählte Poly-Nr. ist:', polyNr)
 
 function getName(polyNr) {
@@ -167,7 +170,7 @@ info.onAdd = function (map) {
 };
 info.update = function (props) {
     this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
-        '<b>' + props.name_long + '</b><br />Der Iso-Code lautet ' + props.iso_a3
+        '<b>' + props.properties.name_long + '</b><br />Der ISO-Code lautet ' + props.properties.iso_a3 + '</b><br />' + props
         : 'Hover over a state');
 };
 info.addTo(map);
