@@ -98,78 +98,62 @@ geojson = L.geoJson(COUNTRY, {
 }).addTo(map).addTo(overlays.coTwo);
 
 //CO2-Daten abrufen
-
 let countries = CODATA[0].country;
-console.log('Länder: ', countries)
+//console.log('Länder: ', countries)
 
 //Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
-//console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
-//console.log(COUNTRY[0].features)
-let polyNr = 5
-console.log(polyNr)
+//Probleme bei 10 "Curaçao", 11 "Cayman Islands" nicht in Liste
+let polyNr = 17
+console.log('Die ausgewählte Poly-Nr. ist:', polyNr)
 
-//Zur Überprüfung, ob ein Land nicht gleich benannt ist. Dies ist nicht der Fall.
-/*
-for (let polyNr = 0; polyNr < COUNTRY[0].features.length; polyNr++){
-    console.log(COUNTRY[0].features[polyNr].properties.name_long);
-  }
-*/
-
-/*
-//Auf Polygon-Daten zugreifen.
-let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-console.log('polyName: ', polyName)
-
-//um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen.
-let lastYear = CODATA[0].country[polyName].data.length - 1
-console.log('Die Array-Nr. des letzten gelisteten Jahres ist: ', lastYear)
-
-let year = CODATA[0].country[polyName].data[lastYear].year
-console.log('Die Daten beziehen sich auf das Jahr', year)
-
-//Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
-let coSelect = CODATA[0].country[polyName].data[lastYear].co2
-console.log('Die jährliche produktionsbedingte CO2-Emission beträgt', coSelect, 'millionen Tonnen')
-
-//So werden die ISO-Daten abgerufen. Land muss variabel
-let iso = CODATA[0].country[polyName].iso_code
-console.log('Der ISO-Code aus den CO2-Daten lautet:', iso)
-
-//Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
-let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
-console.log('Der ISO-Code aus den Poly-Daten lautet:', polyIso)
-*/
-
-
-//Wahrscheinlich muss das alles in eine Funktion, wie beim AWS-Beispiel. Also getDirection wird dann in Windrichtungspopup gespeichert und das wird im Popup erst gecalled.
-
-function getData(polyNr) {
-    //Auf Polygon-Daten zugreifen.
+function getName(polyNr) {
     let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-    console.log('polyName: ', polyName)
-
-    //um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen.
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    console.log('Die Array-Nr. des letzten gelisteten Jahres ist: ', lastYear);
-
-    //Jahr herausfinden
-    let year = CODATA[0].country[polyName].data[lastYear].year;
-    console.log('Die Daten beziehen sich auf das Jahr', year);
-
-    //Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
-    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
-    console.log('Die jährliche produktionsbedingte CO2-Emission beträgt', coSelect, 'millionen Tonnen');
-
-    //So werden die ISO-Daten abgerufen. Land muss variabel
-    let iso = CODATA[0].country[polyName].iso_code;
-    console.log('Der ISO-Code aus den CO2-Daten lautet:', iso);
-
-    //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
-    let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
-    console.log('Der ISO-Code aus den Poly-Daten lautet:', polyIso);
+    console.log('Das Land heißt',polyName);
+    return (polyName)
 }
 
-getData(231);
+function getCoData(polyNr) {
+    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
+    console.log('Die jährliche produktionsbedingte CO2-Emission beträgt',coSelect, 'millionen Tonnen');
+    return (coSelect)
+}
+
+function getYearData(polyNr) {
+    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let year = CODATA[0].country[polyName].data[lastYear].year;
+    console.log('Die Daten beziehen sich auf das Jahr',year);
+    return (year)
+}
+
+function getCoIso(polyNr) {
+    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let iso = CODATA[0].country[polyName].iso_code;
+    console.log('Der ISO-Code aus den CO2-Daten lautet:',iso);
+    return (iso)
+}
+
+function getPolyIso(polyNr) {
+    let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
+    console.log('Der ISO-Code aus den Poly-Daten lautet:',polyIso);
+    return (polyIso)
+}
+
+//Funktion um alle Funktionen zu callen
+function getData(polyNr) {
+    getName(polyNr);
+    getCoData(polyNr);
+    getYearData(polyNr);
+    getCoIso(polyNr);
+    getPolyIso(polyNr)
+}
+
+//CallFunktion wird ausgeführt
+getData(polyNr);
+
 
 //PopUp
 overlays.coTwo.bindPopup(`
