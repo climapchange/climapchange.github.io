@@ -35,7 +35,7 @@ map.fitBounds(overlays.coTwo.getBounds());
 //Style der Polys
 function style(feature) {
     return {
-        fillColor: 'blue',
+        fillColor: 'blue', //Hier kann eine Farbrampe eingebaut werden bzw. Funktion getColor
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -45,7 +45,7 @@ function style(feature) {
 }
 L.geoJson(COUNTRY, {
     style: style
-}).addTo(map);
+}).addTo(map).addTo(overlays.coTwo);
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
 let geojson = L.geoJson(COUNTRY);
@@ -53,30 +53,25 @@ let geojson = L.geoJson(COUNTRY);
 //Staaten werden gehighlighted beim herüberfahren
 function highlightFeature(e) {
     var layer = e.target;
-
     layer.setStyle({
         weight: 5,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
     });
-
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
 }
-
-//Highlight zurücksetzen beim weggehen mit der Maus
+//Highlight zuruecksetzen beim weggehen mit der Maus
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
 }
-
 //Beim Klicken hinzoomen
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
-
-//Ausfuehren der definierten Sachen
+//Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
@@ -84,11 +79,12 @@ function onEachFeature(feature, layer) {
         click: zoomToFeature
     });
 }
-
+//Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
     style: style,
     onEachFeature: onEachFeature
-}).addTo(map);
+}).addTo(map).addTo(overlays.coTwo);
+
 
 //CO2-Daten abrufen
 
