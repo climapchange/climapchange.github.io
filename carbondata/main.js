@@ -70,13 +70,22 @@ function resetHighlight(e) {
 //Beim Klicken hinzoomen
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
+    //Experiment
+    console.log(e.target.feature.properties.name_long)
 }
+
+//Beim Klicken soll der Name gelogged werden
+function logName(e) {
+    console.log(e.target.feature.properties.name_long)
+}
+
 //Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature
+        click: zoomToFeature,
+        click: logName
     });
 }
 //Zur Karte und zum Overlay hinzufuegen
@@ -84,7 +93,6 @@ geojson = L.geoJson(COUNTRY, {
     style: style,
     onEachFeature: onEachFeature
 }).addTo(map).addTo(overlays.coTwo);
-
 
 //CO2-Daten abrufen
 
