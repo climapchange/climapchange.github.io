@@ -61,11 +61,13 @@ function highlightFeature(e) {
     });
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
-    }
+    };
+    info.update(layer.feature.properties);
 }
 //Highlight zuruecksetzen beim weggehen mit der Maus
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
+    info.update();
 }
 //Beim Klicken hinzoomen
 function zoomToFeature(e) {
@@ -103,7 +105,7 @@ let countries = CODATA[0].country;
 
 //Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
 //Probleme bei 10 "Curaçao", 11 "Cayman Islands" nicht in Liste
-let polyNr = 17
+let polyNr = 20
 console.log('Die ausgewählte Poly-Nr. ist:', polyNr)
 
 function getName(polyNr) {
@@ -154,12 +156,33 @@ function getData(polyNr) {
 //CallFunktion wird ausgeführt
 getData(polyNr);
 
+//Daten zeigen
 
+// Anzeige oben Rechts. Style siehe CSS
+var info = L.control();
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+info.update = function (props) {
+    this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
+        '<b>' + props.name_long + '</b><br />Der Iso-Code lautet ' + props.iso_a3
+        : 'Hover over a state');
+};
+info.addTo(map);
+
+//Hier kann noch eine Legende eingefueht werden: https://leafletjs.com/examples/choropleth/ 
+
+
+/*
 //PopUp
 overlays.coTwo.bindPopup(`
-<h3>${COUNTRY[0].features[0].properties.formal_en}</h3>
-<h3>${overlays.coTwo[0]}</h3>
+<h3>${getName}</h3>
+<h3>${getCoData}</h3>
     `);
+
+*/
 
 //clickName wird er in Funktion erzeugt und ist deswegen async
 //<h3>${clickName}</h3>
