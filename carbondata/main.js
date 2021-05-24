@@ -71,13 +71,16 @@ function resetHighlight(e) {
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
     //Experiment
-    console.log(e.target.feature.properties.name_long)
+    //console.log(e.target.feature.properties.name_long)
 }
 
 //Beim Klicken soll der Name gelogged werden
 function logName(e) {
-    console.log(e.target.feature.properties.name_long)
+    return (e.target.feature.properties.name_long),
+        console.log(e.target.feature.properties.name_long)
 }
+
+
 
 //Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
@@ -102,7 +105,7 @@ console.log('Länder: ', countries)
 //Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
 //console.log('Die Anzahl der Poly-Länder beträgt: ', COUNTRY[0].features.length)
 //console.log(COUNTRY[0].features)
-let polyNr = 231
+let polyNr = 5
 console.log(polyNr)
 
 //Zur Überprüfung, ob ein Land nicht gleich benannt ist. Dies ist nicht der Fall.
@@ -112,7 +115,8 @@ for (let polyNr = 0; polyNr < COUNTRY[0].features.length; polyNr++){
   }
 */
 
-//Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
+/*
+//Auf Polygon-Daten zugreifen.
 let polyName = COUNTRY[0].features[polyNr].properties.name_long;
 console.log('polyName: ', polyName)
 
@@ -134,15 +138,44 @@ console.log('Der ISO-Code aus den CO2-Daten lautet:', iso)
 //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
 let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
 console.log('Der ISO-Code aus den Poly-Daten lautet:', polyIso)
-
+*/
 
 
 //Wahrscheinlich muss das alles in eine Funktion, wie beim AWS-Beispiel. Also getDirection wird dann in Windrichtungspopup gespeichert und das wird im Popup erst gecalled.
 
+function getData(polyNr) {
+    //Auf Polygon-Daten zugreifen.
+    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
+    console.log('polyName: ', polyName)
 
+    //um an die Zahl zu kommen nach 'data' muss ich die Länge herausfinden und minus 1 rechnen.
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    console.log('Die Array-Nr. des letzten gelisteten Jahres ist: ', lastYear);
+
+    //Jahr herausfinden
+    let year = CODATA[0].country[polyName].data[lastYear].year;
+    console.log('Die Daten beziehen sich auf das Jahr', year);
+
+    //Automatisch anhand des Poly-Namens nach den CO2 Daten suchen lassen
+    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
+    console.log('Die jährliche produktionsbedingte CO2-Emission beträgt', coSelect, 'millionen Tonnen');
+
+    //So werden die ISO-Daten abgerufen. Land muss variabel
+    let iso = CODATA[0].country[polyName].iso_code;
+    console.log('Der ISO-Code aus den CO2-Daten lautet:', iso);
+
+    //Auf Polygon-Daten zugreifen. Die Zahl hinter features[ZAHL] bestimmt das Land
+    let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
+    console.log('Der ISO-Code aus den Poly-Daten lautet:', polyIso);
+}
+
+getData(231);
 
 //PopUp
 overlays.coTwo.bindPopup(`
 <h3>${COUNTRY[0].features[0].properties.formal_en}</h3>
-<h1>${overlays.coTwo[0]}</h1>
+<h3>${overlays.coTwo[0]}</h3>
     `);
+
+//clickName wird er in Funktion erzeugt und ist deswegen async
+//<h3>${clickName}</h3>
