@@ -82,9 +82,8 @@ function zoomToFeature(e) {
 function logName(e) {
     return (e.target.feature.properties.name_long),
         console.log(e.target.feature.properties.name_long)
+        //console.log(e.target.feature)
 }
-
-
 
 //Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
@@ -170,12 +169,12 @@ info.onAdd = function (map) {
 };
 info.update = function (props) {
     this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
-        '<b>' + props.properties.name_long + '</b><br />Der ISO-Code lautet ' + props.properties.iso_a3 + '</b><br />' + props
+        '<b>' + props.properties.name_long + '</b><br />ISO-Code: ' + props.properties.iso_a3 + '</b><br />'
         : 'Hover over a state');
 };
 info.addTo(map);
 
-//Hier kann noch eine Legende eingefueht werden: https://leafletjs.com/examples/choropleth/ 
+//Hier kann noch eine Legende eingefuegt werden: https://leafletjs.com/examples/choropleth/ 
 
 
 /*
