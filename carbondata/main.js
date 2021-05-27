@@ -12,7 +12,7 @@ let overlays = {
 const map = L.map("map", {
     fullscreenControl: true,
     center: [15, 0],
-    zoom: 3,
+    //zoom: 3, durch fitBounds außer Kraft
     layers: [
         baselayers.standard
     ]
@@ -46,8 +46,6 @@ function style(feature) {
         fillOpacity: 0.2
     };
 }
-// feature.properties.name   Verschachtelter Pfad zu co2: CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2
-
 L.geoJson(COUNTRY, {
     style: style
 }).addTo(map).addTo(overlays.coTwo);
@@ -76,17 +74,10 @@ function resetHighlight(e) {
     geojson.resetStyle(e.target);
     info.update();
 }
-//Beim Klicken hinzoomen
-function zoomToFeature(e) {
-    map.fitBounds(e.target.getBounds());
-    //Experiment
-    //console.log(e.target.feature.properties.name_long)
-}
-
 //Beim Klicken soll der Name gelogged werden
 function logName(e) {
-    return (e.target.feature.properties.name_long),
-        console.log(e.target.feature.properties.name_long)
+    return (e.target.feature.properties.name),
+        console.log(e.target.feature.properties.name)
         //console.log(e.target.feature)
 }
 
@@ -95,7 +86,6 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature,
         click: logName
     });
 }
@@ -105,79 +95,20 @@ geojson = L.geoJson(COUNTRY, {
     onEachFeature: onEachFeature
 }).addTo(map).addTo(overlays.coTwo);
 
-//CO2-Daten abrufen
-let countries = CODATA[0].country;
-//console.log('Länder: ', countries)
-//console.log(COUNTRY[0].features)
-
-//Hier muss die Länder-Zahl (Array-Nr.) des Landes eingetragen werden (0-231)
-//Probleme bei 10 "Curaçao", 11 "Cayman Islands" nicht in Liste
-let polyNr = 40
-console.log('Die ausgewählte Poly-Nr. ist:', polyNr)
-
-function getName(polyNr) {
-    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-    console.log('Das Land heißt',polyName);
-    return (polyName)
-}
-
-function getCoData(polyNr) {
-    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
-    console.log('Die jährliche produktionsbedingte CO2-Emission beträgt',coSelect, 'millionen Tonnen');
-    return (coSelect)
-}
-
-function getYearData(polyNr) {
-    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let year = CODATA[0].country[polyName].data[lastYear].year;
-    console.log('Die Daten beziehen sich auf das Jahr',year);
-    return (year)
-}
-
-function getCoIso(polyNr) {
-    let polyName = COUNTRY[0].features[polyNr].properties.name_long;
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let iso = CODATA[0].country[polyName].iso_code;
-    console.log('Der ISO-Code aus den CO2-Daten lautet:',iso);
-    return (iso)
-}
-
-function getPolyIso(polyNr) {
-    let polyIso = COUNTRY[0].features[polyNr].properties.iso_a3;
-    console.log('Der ISO-Code aus den Poly-Daten lautet:',polyIso);
-    return (polyIso)
-}
-
-// Funktion für Anzeige.
-function getCoDataFromName(polyName) {
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
-    return (coSelect)
-}
-
-// Funktion für Anzeige.
-function getFullDataFromName(polyName, dataType) {
+// Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
+function getData(polyName, dataType) {
     let lastYear = CODATA[0].country[polyName].data.length - 1;
     let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    console.log(dataSelect);
+    //console.log(dataSelect);
     return (dataSelect)
 }
-getFullDataFromName("Afghanistan", "co2")
 
 //Funktion um alle Funktionen zu callen
-function getData(polyNr) {
-    getName(polyNr);
-    getCoData(polyNr);
-    getYearData(polyNr);
-    getCoIso(polyNr);
-    getPolyIso(polyNr)
+function getFullData(polyName) {
+    getData(polyName, "co2");
+    getData(polyName, "year");
 }
-
-//CallFunktion wird ausgeführt
-getData(polyNr);
+//getFullData("Afghanistan")
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
@@ -189,11 +120,10 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
         '<b>' + props.properties.name +  '</b><br />' 
-        + getCoDataFromName(props.properties.name).toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
+        + getData(props.properties.name, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
         : 'Hover over a state');
 };
 info.addTo(map);
 
 //Probleme bei folgenden Ländern: Laos (angepasst), Democratic Republic of Congo, Central African Republic
-
 //Hier kann noch eine Legende eingefuegt werden: https://leafletjs.com/examples/choropleth/ 
