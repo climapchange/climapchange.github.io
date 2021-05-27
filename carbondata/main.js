@@ -146,6 +146,13 @@ function getPolyIso(polyNr) {
     return (polyIso)
 }
 
+// Funktion für Anzeige.
+function getCoDataFromName(polyName) {
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let coSelect = CODATA[0].country[polyName].data[lastYear].co2;
+    return (coSelect)
+}
+
 //Funktion um alle Funktionen zu callen
 function getData(polyNr) {
     getName(polyNr);
@@ -158,8 +165,6 @@ function getData(polyNr) {
 //CallFunktion wird ausgeführt
 getData(polyNr);
 
-//Daten zeigen
-
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
 info.onAdd = function (map) {
@@ -169,22 +174,12 @@ info.onAdd = function (map) {
 };
 info.update = function (props) {
     this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
-        '<b>' + props.properties.name_long + '</b><br />ISO-Code: ' + props.properties.iso_a3 + '</b><br />'
+        '<b>' + props.properties.name +  '</b><br />' 
+        + getCoDataFromName(props.properties.name).toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
         : 'Hover over a state');
 };
 info.addTo(map);
 
+//Probleme bei folgenden Ländern: Laos (angepasst), Democratic Republic of Congo, Central African Republic
+
 //Hier kann noch eine Legende eingefuegt werden: https://leafletjs.com/examples/choropleth/ 
-
-
-/*
-//PopUp
-overlays.coTwo.bindPopup(`
-<h3>${getName}</h3>
-<h3>${getCoData}</h3>
-    `);
-
-*/
-
-//clickName wird er in Funktion erzeugt und ist deswegen async
-//<h3>${clickName}</h3>
