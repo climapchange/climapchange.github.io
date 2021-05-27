@@ -158,6 +158,15 @@ function getCoDataFromName(polyName) {
     return (coSelect)
 }
 
+// Funktion für Anzeige.
+function getFullDataFromName(polyName, dataType) {
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
+    console.log(dataSelect);
+    return (dataSelect)
+}
+getFullDataFromName("Afghanistan", "co2")
+
 //Funktion um alle Funktionen zu callen
 function getData(polyNr) {
     getName(polyNr);
