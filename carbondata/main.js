@@ -35,7 +35,7 @@ map.fitBounds(overlays.coTwo.getBounds());
 //Style der Polys
 function style(feature) {
     return {
-        fillColor: 'blue', //Hier kann eine Farbrampe eingebaut werden bzw. Funktion getColor
+        fillColor: getColor(200),
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -43,6 +43,8 @@ function style(feature) {
         fillOpacity: 0.2
     };
 }
+// feature.properties.name   Verschachtelter Pfad zu co2: CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2
+
 L.geoJson(COUNTRY, {
     style: style
 }).addTo(map).addTo(overlays.coTwo);
