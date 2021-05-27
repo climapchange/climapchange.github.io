@@ -13,8 +13,12 @@ const map = L.map("map", {
     ]
 });
 
-
 let layerControl = L.control.layers({
     "Standard": baselayers.standard,
     "Relief": baselayers.topo,
 }).addTo(map);
+
+var miniMap = new L.Control.MiniMap(L.tileLayer.provider("OpenStreetMap.DE"), {
+    toggleDisplay: true,
+    minimized: false,
+}).addTo(map)
