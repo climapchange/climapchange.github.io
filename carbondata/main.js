@@ -11,7 +11,7 @@ let overlays = {
 
 let bounds = [
     [-80, -180], // Southwest coordinates
-[90, 180] // Northeast coordinates
+    [90, 180] // Northeast coordinates
 ]
 
 const map = L.map("map", {
@@ -55,7 +55,7 @@ function getFullData(polyName) {
 
 //Style der Polys
 function style(feature) {
-    //console.log(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2);
+    //console.log(feature);
     return {
         fillColor: getColor(500),
         //fillColor: getColor(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2),
@@ -98,7 +98,7 @@ function resetHighlight(e) {
 function logName(e) {
     return (e.target.feature.properties.name_long),
         console.log(e.target.feature.properties.name_long)
-        //console.log(e.target.feature)
+    //console.log(e.target.feature)
 }
 
 //Festlegen, wann welche Funktion ausgefuehrt wird
@@ -123,10 +123,10 @@ info.onAdd = function (map) {
     return this._div;
 };
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
-        '<b>' + props.properties.name_long +  '</b><br />' 
-        + getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
-        : 'Hover over a state');
+    this._div.innerHTML = '<h4>Länderdaten</h4>' + (props ?
+        '<b>' + props.properties.name_long + '</b><br />' +
+        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>' :
+        'Hover over a state');
 };
 info.addTo(map);
 
