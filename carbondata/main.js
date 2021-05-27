@@ -96,8 +96,8 @@ function resetHighlight(e) {
 }
 //Beim Klicken soll der Name gelogged werden
 function logName(e) {
-    return (e.target.feature.properties.name),
-        console.log(e.target.feature.properties.name)
+    return (e.target.feature.properties.name_long),
+        console.log(e.target.feature.properties.name_long)
         //console.log(e.target.feature)
 }
 
@@ -124,8 +124,8 @@ info.onAdd = function (map) {
 };
 info.update = function (props) {
     this._div.innerHTML = '<h4>Länderdaten</h4>' +  (props ?
-        '<b>' + props.properties.name +  '</b><br />' 
-        + getData(props.properties.name, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
+        '<b>' + props.properties.name_long +  '</b><br />' 
+        + getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>'
         : 'Hover over a state');
 };
 info.addTo(map);
