@@ -35,7 +35,10 @@ map.fitBounds(overlays.coTwo.getBounds());
 //Style der Polys
 function style(feature) {
     return {
-        fillColor: getColor(200),
+        fillColor: getColor(500),
+        //Hier bekomme ich immer undefined-Farbe
+            //`getCoDataFromName(${feature.properties.name})`),
+            //`CODATA[0].country.${feature.properties.name}.data[CODATA[0].country.${feature.properties.name}.data.length - 1].co2`),
         weight: 2,
         opacity: 0.5,
         color: 'white',
