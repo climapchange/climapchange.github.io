@@ -9,13 +9,19 @@ let overlays = {
     coTwo: L.featureGroup()
 };
 
+let bounds = [
+    [-90, -180], // Southwest coordinates
+[90, 180] // Northeast coordinates
+]
+
 const map = L.map("map", {
     fullscreenControl: true,
     center: [15, 0],
     //zoom: 3, durch fitBounds außer Kraft
     layers: [
         baselayers.standard
-    ]
+    ],
+    maxBounds: bounds
 });
 
 let layerControl = L.control.layers({
