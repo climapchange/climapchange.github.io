@@ -38,13 +38,27 @@ overlays.coTwo.addTo(map)
 //Zoom an Polys anpassen
 map.fitBounds(overlays.coTwo.getBounds());
 
+// Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
+function getData(polyName, dataType) {
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
+    //console.log(dataSelect);
+    return (dataSelect)
+}
+
+//Funktion um alle Funktionen zu callen
+function getFullData(polyName) {
+    getData(polyName, "co2");
+    getData(polyName, "year");
+}
+//getFullData("Afghanistan")
+
 //Style der Polys
 function style(feature) {
+    //console.log(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2);
     return {
         fillColor: getColor(500),
-        //Hier bekomme ich immer undefined-Farbe
-            //`getCoDataFromName(${feature.properties.name})`),
-            //`CODATA[0].country.${feature.properties.name}.data[CODATA[0].country.${feature.properties.name}.data.length - 1].co2`),
+        //fillColor: getColor(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2),
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -100,21 +114,6 @@ geojson = L.geoJson(COUNTRY, {
     style: style,
     onEachFeature: onEachFeature
 }).addTo(map).addTo(overlays.coTwo);
-
-// Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
-function getData(polyName, dataType) {
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    //console.log(dataSelect);
-    return (dataSelect)
-}
-
-//Funktion um alle Funktionen zu callen
-function getFullData(polyName) {
-    getData(polyName, "co2");
-    getData(polyName, "year");
-}
-//getFullData("Afghanistan")
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
