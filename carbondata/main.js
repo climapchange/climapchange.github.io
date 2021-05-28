@@ -51,13 +51,27 @@ function getFullData(polyName) {
     getData(polyName, "co2");
     getData(polyName, "year");
 }
-//getFullData("Afghanistan")
+getFullData("noMatch")
+
+function getCoData(polyName) {
+    let lastYear = CODATA[0].country[polyName].data.length - 1;
+    let dataSelect = CODATA[0].country[polyName].data[lastYear].co2;
+    if (dataSelect == 'number') {
+        return dataSelect
+    } else {
+        return 9999;
+    }  
+}
+
+function getNumber(nr) {
+    return number = nr
+}
 
 //Style der Polys
 function style(feature) {
     //console.log(feature);
     return {
-        fillColor: getColor(500),
+        fillColor: getColor(feature),
         //fillColor: getColor(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2),
         weight: 2,
         opacity: 0.5,
@@ -80,7 +94,7 @@ function highlightFeature(e) {
         weight: 5,
         color: '#666',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 0.4
     });
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
