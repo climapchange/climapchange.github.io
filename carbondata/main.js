@@ -137,10 +137,10 @@ info.onAdd = function (map) {
     return this._div;
 };
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Länderdaten</h4>' + (props ?
-        '<b>' + props.properties.name_long + '</b><br />' +
-        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub>' :
-        'Hover over a state');
+    this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen pro Jahr</h4>' + (props ?
+        '<b>' + props.properties.name + '</b><br />' +
+        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen' :
+        'Hover über einen Staat');
 };
 info.addTo(map);
 
