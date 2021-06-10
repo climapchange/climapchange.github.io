@@ -54,3 +54,14 @@ overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
 
 
+// Leaflet hash
+var hash = new L.Hash(map);
+
+//Minimap
+var miniMap = new L.Control.MiniMap( 
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
+
