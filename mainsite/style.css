@@ -27,12 +27,12 @@ header img{
 }
 
 main {
-    font-weight: bold;
     text-align: center;
     margin: 16px;
 }
 
 main h2 {
+    
     background-color: #11828a;
     color: #fff;
 }
