@@ -200,7 +200,7 @@ const SOZIALES = [
 ];
 
 
-const WIRTSCHAFT = [
+const GESUNDHEIT = [
     {
         nr: 1,
         user: "ARGE Abfallvermeidung",

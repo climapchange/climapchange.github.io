@@ -17,7 +17,7 @@ let baselayers = {
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
     Stadtentwicklung: L.markerClusterGroup(),
-    Wirtschaft: L.markerClusterGroup(),
+    Gesundheit: L.markerClusterGroup(),
     Soziales: L.markerClusterGroup(),
     UmweltKlima: L.markerClusterGroup()
 };
@@ -42,14 +42,14 @@ let layerControl = L.control.layers({
     "basemap.at Orthofoto beschriftet": baselayers.ortho_overlay
 }, {
     "Stadtentwicklung": overlays.Stadtentwicklung,
-    "Nachhaltiges Wirtschaften": overlays.Wirtschaft,
+    "Gesundheit": overlays.Gesundheit,
     "Soziales": overlays.Soziales,
     "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima
 }).addTo(map);
 
 // alle Overlays nach dem Laden anzeigen
 overlays.Stadtentwicklung.addTo(map);
-overlays.Wirtschaft.addTo(map);
+overlays.Gesundheit.addTo(map);
 overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
 
@@ -97,10 +97,6 @@ for (let entry of SOZIALES) {
 for (let entry of STADTENTWICKLUNG) {
     console.log(entry);
     let mrk = L.marker([entry.lat, entry.lng], {icon: StadtIcon}).addTo(map);
-        icon: L.icon({
-            iconUrl: 'icons/Stadt.png',
-            iconSize: [38, 38]
-    })
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
@@ -108,6 +104,19 @@ for (let entry of STADTENTWICKLUNG) {
     <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
 `).addTo(overlays.Stadtentwicklung);
+}
+
+
+for (let entry of GESUNDHEIT) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: GesundheitIcon}).addTo(map);
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+`).addTo(overlays.Gesundheit);
 }
 
 
