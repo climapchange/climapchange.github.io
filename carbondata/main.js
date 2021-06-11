@@ -6,7 +6,8 @@ let baselayers = {
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
-    coTwo: L.featureGroup()
+    coTwo: L.featureGroup(),
+    coTwoPerCapita: L.featureGroup()
 };
 
 let bounds = [
@@ -31,11 +32,15 @@ let layerControl = L.control.layers({
     "Relief": baselayers.terrain,
 }, {
     "CO2": overlays.coTwo,
+    "CO2 pro Person": overlays.coTwoPerCapita,
 }).addTo(map);
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
-overlays.coTwo.addTo(map)
+//overlays.coTwo.addTo(map)
+
+L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita).addTo(map)
+overlays.coTwoPerCapita.addTo(map)
 //Zoom an Polys anpassen
 map.fitBounds(overlays.coTwo.getBounds());
 
@@ -60,7 +65,7 @@ function style(feature) {
 }
 L.geoJson(COUNTRY, {
     style: style
-}).addTo(map).addTo(overlays.coTwo);
+}).addTo(overlays.coTwo);
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
 let geojson = L.geoJson(COUNTRY);
@@ -106,7 +111,7 @@ function onEachFeature(feature, layer) {
 geojson = L.geoJson(COUNTRY, {
     style: style,
     onEachFeature: onEachFeature
-}).addTo(map).addTo(overlays.coTwo);
+}).addTo(overlays.coTwo);
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
