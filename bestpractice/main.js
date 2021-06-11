@@ -57,8 +57,12 @@ overlays.UmweltKlima.addTo(map);
 for (let entry of UMWELT) {
     console.log(entry);
     let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
-    mrk.bindPopup(`<h4>Stop ${entry.nr}: ${entry.name}<h4>
-    <p><a href="${entry.about}"><i class="fas fa-external-link-alt mr-3"></i>Read about stop in Wikipedia</a></p>
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3>Mail: <a href="mailto:${entry.Mail}" target="_blank">"${entry.Mail}"</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
 `); 
 }
 
