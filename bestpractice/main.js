@@ -55,13 +55,19 @@ overlays.UmweltKlima.addTo(map);
 
 
 //Icons
-var UmweltIcon = L.icon({
-    iconUrl: 'icons/tree.png',
-
-    iconSize:     [38, 38], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize:     [38, 38], // size of the icon
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    }
 });
+
+var UmweltIcon = new LeafIcon({iconUrl: 'icons/tree.png'}),
+    SozialIcon = new LeafIcon({iconUrl: 'icons/sozial.png'}),
+    StadtIcon = new LeafIcon({iconUrl: 'icons/city.png'});
+    GesundheitIcon = new LeafIcon({iconUrl: 'icons/health.png'});
+
 
 
 for (let entry of UMWELT) {
@@ -78,7 +84,7 @@ for (let entry of UMWELT) {
 
 for (let entry of SOZIALES) {
     console.log(entry);
-    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: SozialIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
@@ -90,7 +96,7 @@ for (let entry of SOZIALES) {
 
 for (let entry of STADTENTWICKLUNG) {
     console.log(entry);
-    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: StadtIcon}).addTo(map);
         icon: L.icon({
             iconUrl: 'icons/Stadt.png',
             iconSize: [38, 38]
