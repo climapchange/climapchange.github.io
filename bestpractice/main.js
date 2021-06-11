@@ -61,7 +61,7 @@ for (let entry of UMWELT) {
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
-    <h3>Mail: <a href="mailto:${entry.Mail}" target="_blank">"${entry.Mail}"</a></h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
 `); 
 }
