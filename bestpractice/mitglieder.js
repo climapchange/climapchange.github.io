@@ -327,16 +327,16 @@ const UMWELT = [
     },
     {
     
-        nr: 18,
-        user: "Global 2000",
-        Adresse: "Neustiftgasse 36, 1070 Wien",
-        Mail: "office@global2000.at",
+        nr: 23,
+        user: "Klimabündnis Österreich",
+        Adresse: "Prinz-Eugen-Straße 72/1.5, 1040 Wien",
+        Mail: "office@klimabuendnis.at",
         Öffnungszeiten: "",
-        intro: "Österreichs unabhängige Umweltschutzorganisation",
-        about: "Wir setzen alles daran, unsere Welt zum Positiven zu verändern. Das heißt, egal, um welches Umweltschutz-Thema es geht: Wir setzen uns für das Gute und das Schöne ein. Denn es ist schön, bedenkenlos in einen Bio-Apfel zu beissen, den Kindern gesunde, vielfältige Lebensmittel bieten und intakte Lebensräume nützen zu können. Genauso schön ist es auch, mit gutem Gewissen einkaufen zu gehen, weil wir für faire Bedingungen im Handel sorgen und Menschen, Tiere und Pflanzen friedvoll zusammenleben. Quelle: https://www.global2000.at/ueber-global-2000",
-        weblink: "https://www.global2000.at/",
-        lat: 48.20559473723108,  
-        lng: 16.350895198496506,
+        intro: "Wir setzen uns aktiv für Klimaschutz, Klimagerechtigkeit und einen nachhaltigen Lebensstil ein.",
+        about: "Wir sind das größte kommunale Klimaschutz-Netzwerk Österreichs. Wir setzen lokale Klimaschutz-Initiativen und schützen gleichzeitig den Amazonas-Regenwald. Und das bereits seit 1990. Das Klimabündnis ist eine globale Partnerschaft zum Schutz des Klimas und verbindet mittlerweile mehr als 1.700 Gemeinden in 27 Ländern Europas mit indigenen Völkern in Südamerika. Die gemeinsamen Ziele sind: Verringerung der Treibhausgas-Emissionen und Erhalt des Amazonas-Regenwaldes. Quelle: https://www.klimabuendnis.at/ueber-uns/kb-ueber-uns",
+        weblink: "https://www.klimabuendnis.at/",
+        lat: 48.189552457621275,   
+        lng: 16.38080932310104,
     },
     {
     
