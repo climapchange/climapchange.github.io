@@ -63,8 +63,34 @@ for (let entry of UMWELT) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
-`); 
+`).addTo(overlays.UmweltKlima);
 }
+
+for (let entry of SOZIALES) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+`).addTo(overlays.Soziales);
+}
+
+for (let entry of STADTENTWICKLUNG) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+`).addTo(overlays.Stadtentwicklung);
+}
+
+
 
 
 
