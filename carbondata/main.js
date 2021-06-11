@@ -6,7 +6,8 @@ let baselayers = {
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
-    coTwo: L.featureGroup()
+    coTwo: L.featureGroup(),
+    coTwoPerCapita: L.featureGroup()
 };
 
 let bounds = [
@@ -31,6 +32,7 @@ let layerControl = L.control.layers({
     "Relief": baselayers.terrain,
 }, {
     "CO2": overlays.coTwo,
+    "CO2 pro Person": overlays.coTwoPerCapita,
 }).addTo(map);
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
