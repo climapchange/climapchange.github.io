@@ -78,6 +78,71 @@ const UMWELT = [
         lat: 46.554567127891396,
         lng: 14.598284144200157,
     },
+    {
+    
+        nr: 6,
+        user: "Climates Austria",
+        Adresse: "Lindengasse 56/18-19, 1070 Wien",
+        Mail: "hello@climatesaustria.org",
+        Öffnungszeiten: "",
+        intro: "Jugend für eine klimaverträgliche Zukunft",
+        about: "CliMates Austria bringt Bewegung ins Klima. Wir nehmen Einfluss auf die Klimapolitik, bestärken junge Changemaker*innen, machen Klimabildung und schreiben über wichtige klimapolitische Themen. Wir sind junge Bürger*innen, die die Welt verändern. CliMates Austria ist eine ehrenamtliche NGO und Teil des internationalen Jugendnetzwerks CliMates. Und Du kannst jetzt als Mitglied „Mate“ Teil davon werden! Quelle: https://climatesaustria.org/",
+        weblink: "https://climatesaustria.org/" ,
+        lat: 48.19987970442615,
+        lng: 16.346090278771765,
+    },
+    {
+    
+        nr: 7,
+        user: "Die Umweltberatung Wien",
+        Adresse: "Buchengasse 77/4, 1100 Wien",
+        Mail: "service@umweltberatung.at",
+        Öffnungszeiten: "",
+        intro: "Individuelle Beratung für Privatpersonen sowie für Unternehmen.",
+        about: "Seit 1988 informiert und berät DIE UMWELTBERATUNG Privathaushalte und Betriebe und arbeitet in Umweltschutz-Projekten. Von diesem Know-how profitieren unsere Kundinnen und Kunden sowie ProjektpartnerInnen. DIE UMWELTBERATUNG bereitet ökologisches Wissen gut verständlich und praxisorientiert auf. Unsere BeraterInnen beantworten Ihre Anfragen individuell und firmen-unabhängig. Wir beraten private Haushalte, Bildungseinrichtungen, Institutionen und Betriebe. DIE UMWELTBERATUNG verwirklicht zukunftsweisende Projekte. Quelle: https://www.umweltberatung.at/ueber-uns",
+        weblink: "https://www.umweltberatung.at/" ,
+        lat: 48.1749255624965,
+        lng: 16.374404598358936,
+    },
+    {
+    
+        nr: 8,
+        user: "Das Gramm",
+        Adresse: "Neutorgasse 7, 8010 Graz",
+        Mail: "hallo@dasgramm.at",
+        Öffnungszeiten: "Mo - Fr: 9:00 - 19:00, Sa: 10:00 - 17:00",
+        intro: "Regionale Bio-Greisslerei",
+        about: "Das Gramm, unsere regionale Greißlerei, wurde im April 2016 in der Neutorgasse eröffnet. Seither liegt unser Fokus auf regionalen Spezialitäten, unverpackten Lebensmitteln aus kontrolliert biologischem Anbau und einer kleinen, aber feinen Auswahl an Zero Waste Artikeln in den Bereichen Haushalt und Körperpflege. Produkte, die eine Verpackung brauchen, sind in Pfandgläsern oder Papiersackerln erhältlich, um so besonders Einwegplastik bestmöglich zu vermeiden. Bei uns kannst du genau diese Menge kaufen, die du auch wirklich brauchst – so gehen wir auch bei dir zuhause gegen Lebensmittelverschwendung vor. Unser “kleines Gramm” ist mehr als nur eine Greißlerei; es ist ein Ort zum Ankommen und Wohlfühlen, an dem du dich mit unserem Experten:innen-Team austauschen oder auch einfach in Ruhe die Atmosphäre auf dich wirken lassen kannst. Quelle: https://www.dasgramm.at/das-sind-wir/#wiewir",
+        weblink: "https://www.dasgramm.at/",
+        lat: 47.070688574948505, 
+        lng: 15.436974564704707,
+    },
+    {
+    
+        nr: 9,
+        user: "E. C. O.",
+        Adresse: "Lakeside B07b, 9020 Klagenfurt",
+        Mail: "office@e-c-o.at",
+        Öffnungszeiten: "",
+        intro: "Institut für Ökologie",
+        about: "Wir begeistern uns für die Vielfalt der Natur und sichern ihren Erhalt auch für zukünftige Generationen. Als Forschungs- und Beratungsunternehmen für „Naturschutz im 21. Jahrhundert“ begleiten und unterstützen wir unsere internationalen und nationalen Partner:innen dabei, natürliche Lebensräume zu bewahren und zu verbessern, außergewöhnliche Naturerlebnisse zu ermöglichen und die Lebens- und Wirtschaftsbedingungen in den jeweiligen Regionen weiterzuentwickeln. Mit unseren ökologischen Fachplanungen, naturräumlichen Erhebungen, innovativen Kommunikationskonzepten und nachhaltiger Entwicklungszusammenarbeit setzen wir uns aktiv für die Erfüllung der globalen Sustainable Development Goals ein. Quelle: https://e-c-o.at/home.html",
+        weblink: "https://e-c-o.at/home.html",
+        lat: 46.61445647600445,
+        lng: 14.263496343802236,
+    },
+    {
+    
+        nr: 10,
+        user: "EU Umweltbüro",
+        Adresse: "Strozzigasse 10/8-9, 1080 Wien",
+        Mail: "office@eu-umweltbuero.at",
+        Öffnungszeiten: "",
+        intro: "Kompetenzzentrum für Europäische Umweltpolitik und -gesetzgebung",
+        about: "Das EU Umweltbüro in Wien wurde 1994 als Kompetenzzentrum für Europäische Umweltpolitik und -gesetzgebung gegründet und ist im Umweltdachverband – der größten österreichischen Dachorganisation von Umweltschutzorganisationen – angesiedelt. Die Kernkompetenzen des EU-Umweltbüros sind umfassende Kenntnisse des politischen Gesetzwerdungsprozesses auf europäischer Ebene und Informationen über derzeitige und zukünftige Entwicklungen im Bereich EU-Umweltpolitik. Das Umweltbüro vertritt die österreichischen Mitglieder im Vorstand des europäischen Dachverbands European Environmental Bureau (EEB)in Brüssel. Das Umweltbüro ist auf europäischer und  internationaler Ebene gut vernetzt und arbeitet auf Deutsch und Englisch. Quelle: https://www.eu-umweltbuero.at/ueber-uns/was-wir-tun/",
+        weblink: "https://www.eu-umweltbuero.at/",
+        lat: 48.20739603144972, 
+        lng: 16.349451311852835,
+    },
 ];
 
 const SOZIALES = [
@@ -106,6 +171,32 @@ const SOZIALES = [
         lng: 16.34533636157988
 
     },
+    {
+        nr: 3,
+        user: "Das Gramm",
+        Adresse: "Neutorgasse 7, 8010 Graz",
+        Mail: "hallo@dasgramm.at",
+        Öffnungszeiten: "Mo - Fr: 9:00 - 19:00, Sa: 10:00 - 17:00",
+        intro: "Regionale Bio-Greisslerei",
+        about: "Das Gramm, unsere regionale Greißlerei, wurde im April 2016 in der Neutorgasse eröffnet. Seither liegt unser Fokus auf regionalen Spezialitäten, unverpackten Lebensmitteln aus kontrolliert biologischem Anbau und einer kleinen, aber feinen Auswahl an Zero Waste Artikeln in den Bereichen Haushalt und Körperpflege. Produkte, die eine Verpackung brauchen, sind in Pfandgläsern oder Papiersackerln erhältlich, um so besonders Einwegplastik bestmöglich zu vermeiden. Bei uns kannst du genau diese Menge kaufen, die du auch wirklich brauchst – so gehen wir auch bei dir zuhause gegen Lebensmittelverschwendung vor. Unser “kleines Gramm” ist mehr als nur eine Greißlerei; es ist ein Ort zum Ankommen und Wohlfühlen, an dem du dich mit unserem Experten:innen-Team austauschen oder auch einfach in Ruhe die Atmosphäre auf dich wirken lassen kannst. Quelle: https://www.dasgramm.at/das-sind-wir/#wiewir",
+        weblink: "https://www.dasgramm.at/",
+        lat: 47.070688574948505, 
+        lng: 15.436974564704707,
+    },
+    {
+        nr: 4,
+        user: "E. C. O.",
+        Adresse: "Lakeside B07b, 9020 Klagenfurt",
+        Mail: "office@e-c-o.at",
+        Öffnungszeiten: "",
+        intro: "Institut für Ökologie",
+        about: "Wir begeistern uns für die Vielfalt der Natur und sichern ihren Erhalt auch für zukünftige Generationen. Als Forschungs- und Beratungsunternehmen für „Naturschutz im 21. Jahrhundert“ begleiten und unterstützen wir unsere internationalen und nationalen Partner:innen dabei, natürliche Lebensräume zu bewahren und zu verbessern, außergewöhnliche Naturerlebnisse zu ermöglichen und die Lebens- und Wirtschaftsbedingungen in den jeweiligen Regionen weiterzuentwickeln. Mit unseren ökologischen Fachplanungen, naturräumlichen Erhebungen, innovativen Kommunikationskonzepten und nachhaltiger Entwicklungszusammenarbeit setzen wir uns aktiv für die Erfüllung der globalen Sustainable Development Goals ein. Quelle: https://e-c-o.at/home.html",
+        weblink: "https://e-c-o.at/home.html",
+        lat: 46.61445647600445,
+        lng: 14.263496343802236,
+    },
+
+
 ];
 
 

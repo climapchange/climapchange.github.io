@@ -16,10 +16,10 @@ let baselayers = {
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
-    Stadtentwicklung: L.featureGroup(),
-    Wirtschaft: L.featureGroup(),
-    Soziales: L.featureGroup(),
-    UmweltKlima: L.featureGroup()
+    Stadtentwicklung: L.markerClusterGroup(),
+    Wirtschaft: L.markerClusterGroup(),
+    Soziales: L.markerClusterGroup(),
+    UmweltKlima: L.markerClusterGroup()
 };
 
 // Karte initialisieren und auf Wiens Wikipedia Koordinate blicken
