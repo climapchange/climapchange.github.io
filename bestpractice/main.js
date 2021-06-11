@@ -16,10 +16,10 @@ let baselayers = {
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
-    Stadtentwicklung: L.featureGroup(),
-    Wirtschaft: L.featureGroup(),
-    Soziales: L.featureGroup(),
-    UmweltKlima: L.featureGroup()
+    Stadtentwicklung: L.markerClusterGroup(),
+    Wirtschaft: L.markerClusterGroup(),
+    Soziales: L.markerClusterGroup(),
+    UmweltKlima: L.markerClusterGroup()
 };
 
 // Karte initialisieren und auf Wiens Wikipedia Koordinate blicken
@@ -54,17 +54,63 @@ overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
 
 
+//Icons
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize:     [38, 38], // size of the icon
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    }
+});
+
+var UmweltIcon = new LeafIcon({iconUrl: 'icons/tree.png'}),
+    SozialIcon = new LeafIcon({iconUrl: 'icons/sozial.png'}),
+    StadtIcon = new LeafIcon({iconUrl: 'icons/city.png'});
+    GesundheitIcon = new LeafIcon({iconUrl: 'icons/health.png'});
+
+
+
 for (let entry of UMWELT) {
     console.log(entry);
-    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: UmweltIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
-`); 
+`).addTo(overlays.UmweltKlima);
 }
+
+for (let entry of SOZIALES) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: SozialIcon}).addTo(map);
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+`).addTo(overlays.Soziales);
+}
+
+for (let entry of STADTENTWICKLUNG) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng], {icon: StadtIcon}).addTo(map);
+        icon: L.icon({
+            iconUrl: 'icons/Stadt.png',
+            iconSize: [38, 38]
+    })
+    mrk.bindPopup(`<h1>${entry.user}<h1>
+    <h2>${entry.intro}</h2>
+    <h3>${entry.about}</h3>
+    <h3>Adresse: ${entry.Adresse}</h3>
+    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+`).addTo(overlays.Stadtentwicklung);
+}
+
+
 
 
 
