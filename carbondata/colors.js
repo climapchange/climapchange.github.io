@@ -1,6 +1,4 @@
-function getColor(feature) {
-    let polyName = feature.properties.name_long;
-    let coData = (CODATA[0].country[polyName].data[CODATA[0].country[polyName].data.length - 1].co2);
+function getColor(coData) {
     return coData > 99998 ? '#808080' :
         coData > 1000 ? '#800026' :
         coData > 500 ? '#BD0026' :

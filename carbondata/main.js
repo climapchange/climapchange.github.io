@@ -24,6 +24,7 @@ const map = L.map("map", {
     maxBounds: bounds
 });
 
+//Hier muss der Style noch angepasst werden damit es nicht zentriert ist
 let layerControl = L.control.layers({
     "Standard": baselayers.standard,
     "Dark Mode": baselayers.darkMode,
@@ -42,37 +43,14 @@ map.fitBounds(overlays.coTwo.getBounds());
 function getData(polyName, dataType) {
     let lastYear = CODATA[0].country[polyName].data.length - 1;
     let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    //console.log(dataSelect);
-    return (dataSelect)
-}
-
-//Funktion um alle Funktionen zu callen
-function getFullData(polyName) {
-    getData(polyName, "co2");
-    getData(polyName, "year");
-}
-getFullData("noMatch")
-
-function getCoData(polyName) {
-    let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let dataSelect = CODATA[0].country[polyName].data[lastYear].co2;
-    if (dataSelect == 'number') {
-        return dataSelect
-    } else {
-        return 9999;
-    }  
-}
-
-function getNumber(nr) {
-    return number = nr
+    return(dataSelect);
 }
 
 //Style der Polys
 function style(feature) {
     //console.log(feature);
     return {
-        fillColor: getColor(feature),
-        //fillColor: getColor(CODATA[0].country[feature.properties.name].data[CODATA[0].country[feature.properties.name].data.length - 1].co2),
+        fillColor: getColor(getData(feature.properties.name_long, "co2")),
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -108,6 +86,7 @@ function resetHighlight(e) {
     geojson.resetStyle(e.target);
     info.update();
 }
+
 //Beim Klicken soll der Name gelogged werden
 function logName(e) {
     return (e.target.feature.properties.name_long),
@@ -144,5 +123,4 @@ info.update = function (props) {
 };
 info.addTo(map);
 
-//Probleme bei folgenden Ländern: Laos (angepasst), Democratic Republic of Congo, Central African Republic
 //Hier kann noch eine Legende eingefuegt werden: https://leafletjs.com/examples/choropleth/ 
