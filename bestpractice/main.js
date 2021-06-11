@@ -48,10 +48,20 @@ let layerControl = L.control.layers({
 }).addTo(map);
 
 // alle Overlays nach dem Laden anzeigen
-overlays.stadtentwicklung.addTo(map);
+overlays.Stadtentwicklung.addTo(map);
 overlays.Wirtschaft.addTo(map);
 overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
+
+
+for (let entry of UMWELT) {
+    console.log(entry);
+    let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+    mrk.bindPopup(`<h4>Stop ${entry.nr}: ${entry.name}<h4>
+    <p><a href="${entry.about}"><i class="fas fa-external-link-alt mr-3"></i>Read about stop in Wikipedia</a></p>
+`); 
+}
+
 
 
 // Leaflet hash
