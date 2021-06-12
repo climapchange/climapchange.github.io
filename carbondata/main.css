@@ -33,9 +33,19 @@ header img{
     color: #fff;
 }
 
-.quelle 
+.quelle, 
 .quelle a:link,
 .quelle a:visited {
+    color: #fff;
+}
+
+main {
+    text-align: center;
+    margin: 16px;
+}
+
+main h2 {
+    background-color: #11828a;
     color: #fff;
 }
 
