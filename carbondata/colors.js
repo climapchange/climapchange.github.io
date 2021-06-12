@@ -22,3 +22,15 @@ function getColorCoPerCapita(data) {
         data > 0.5 ? '#ffeda0' :
         '#ffffcc';
 }
+
+function getColorCoGlobalShare(data) {
+    return data > 99998 ? '#bdbdbd' :
+        data > 25 ? '#b10026' :
+        data > 20 ? '#e31a1c' :
+        data > 15 ? '#fc4e2a' :
+        data > 10 ? '#fd8d3c' :
+        data > 5 ? '#feb24c' :
+        data > 1 ? '#fed976' :
+        data > 0.5 ? '#ffeda0' :
+        '#ffffcc';
+}

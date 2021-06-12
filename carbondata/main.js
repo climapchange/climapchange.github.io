@@ -7,7 +7,8 @@ let baselayers = {
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
     coTwo: L.featureGroup(),
-    coTwoPerCapita: L.featureGroup()
+    coTwoPerCapita: L.featureGroup(),
+    coTwoGlobalShare: L.featureGroup()
 };
 
 let bounds = [
@@ -35,6 +36,7 @@ const map = L.map("map", {
 let overlayControl = L.control.layers({
     "CO2": overlays.coTwo,
     "CO2 pro Person": overlays.coTwoPerCapita,
+    "CO2 Anteil global": overlays.coTwoGlobalShare,
 }).addTo(map);
 
 
@@ -125,13 +127,10 @@ geojson = L.geoJson(COUNTRY, {
 
 // CO2 per capita
 
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita)
-overlays.coTwoPerCapita.addTo(map)
+//overlays.coTwoPerCapita.addTo(map)
 
-//Style der Polys CO2 per Capita
 function stylePerCapita(feature) {
-    //console.log(feature);
     return {
         fillColor: getColorCoPerCapita(getData(feature.properties.name_long, "co2_per_capita")),
         weight: 2,
@@ -145,12 +144,35 @@ L.geoJson(COUNTRY, {
     style: stylePerCapita
 }).addTo(overlays.coTwoPerCapita);
 
-//Zur Karte und zum Overlay hinzufuegen -> PER CAPITA
 geojson = L.geoJson(COUNTRY, {
     style: stylePerCapita,
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwoPerCapita);
 
+
+// CO2 GLOBAL SHARE
+
+L.geoJson(COUNTRY).addTo(overlays.coTwoGlobalShare)
+overlays.coTwoGlobalShare.addTo(map)
+
+function styleGlobalShare(feature) {
+    return {
+        fillColor: getColorCoGlobalShare(getData(feature.properties.name_long, "share_global_co2")),
+        weight: 2,
+        opacity: 0.5,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+}
+L.geoJson(COUNTRY, {
+    style: styleGlobalShare
+}).addTo(overlays.coTwoGlobalShare);
+
+geojson = L.geoJson(COUNTRY, {
+    style: styleGlobalShare,
+    onEachFeature: onEachFeature
+}).addTo(overlays.coTwoGlobalShare);
 
 
 // Anzeige oben Rechts. Style siehe CSS
@@ -161,7 +183,7 @@ info.onAdd = function (map) {
     return this._div;
 };
 info.update = function (props) {
-    this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen pro Jahr</h4>' + (props ?
+    this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen</h4>' + (props ?
         '<b>' + props.properties.name + '</b><br />' +
         getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen' + '</b><br />' +
         getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' Tonnen pro Person' + '</b><br />' +
