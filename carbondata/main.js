@@ -1,7 +1,7 @@
 let baselayers = {
     standard: L.tileLayer.provider("OpenStreetMap.DE"),
     darkMode: L.tileLayer.provider("Stamen.TonerBackground"),
-    terrain: L.tileLayer.provider("OpenTopoMap"),
+    //terrain: L.tileLayer.provider("OpenTopoMap"),
 };
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
@@ -29,20 +29,14 @@ const map = L.map("map", {
 let layerControl = L.control.layers({
     "Standard": baselayers.standard,
     "Dark Mode": baselayers.darkMode,
-    "Relief": baselayers.terrain,
+    //"Relief": baselayers.terrain,
 }, {
     "CO2": overlays.coTwo,
     "CO2 pro Person": overlays.coTwoPerCapita,
 }).addTo(map);
 
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
-L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
-//overlays.coTwo.addTo(map)
 
-L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita).addTo(map)
-overlays.coTwoPerCapita.addTo(map)
-//Zoom an Polys anpassen
-map.fitBounds(overlays.coTwo.getBounds());
+// FUNKTIONEN UNABHAENGIG VOM OVERLAY!!!
 
 // Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
 function getData(polyName, dataType) {
@@ -50,22 +44,6 @@ function getData(polyName, dataType) {
     let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
     return(dataSelect);
 }
-
-//Style der Polys
-function style(feature) {
-    //console.log(feature);
-    return {
-        fillColor: getColor(getData(feature.properties.name_long, "co2")),
-        weight: 2,
-        opacity: 0.5,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.2
-    };
-}
-L.geoJson(COUNTRY, {
-    style: style
-}).addTo(overlays.coTwo);
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
 let geojson = L.geoJson(COUNTRY);
@@ -107,11 +85,71 @@ function onEachFeature(feature, layer) {
         click: logName
     });
 }
+
+
+// OVERLAY-SPEZIFISCHER CODE!!!
+
+// CO2
+
+//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
+L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
+//overlays.coTwo.addTo(map)
+//Zoom an Polys anpassen
+map.fitBounds(overlays.coTwo.getBounds());
+
+//Style der Polys CO2
+function style(feature) {
+    //console.log(feature);
+    return {
+        fillColor: getColorCo(getData(feature.properties.name_long, "co2")),
+        weight: 2,
+        opacity: 0.5,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+}
+L.geoJson(COUNTRY, {
+    style: style
+}).addTo(overlays.coTwo);
+
 //Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
     style: style,
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwo);
+
+
+
+// CO2 per capita
+
+//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
+L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita).addTo(map)
+overlays.coTwoPerCapita.addTo(map)
+
+//Style der Polys CO2 per Capita
+function stylePerCapita(feature) {
+    //console.log(feature);
+    return {
+        fillColor: getColorCoPerCapita(getData(feature.properties.name_long, "co2_per_capita")),
+        weight: 2,
+        opacity: 0.5,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+}
+L.geoJson(COUNTRY, {
+    style: stylePerCapita
+}).addTo(overlays.coTwoPerCapita);
+
+//Zur Karte und zum Overlay hinzufuegen -> PER CAPITA
+geojson = L.geoJson(COUNTRY, {
+    style: stylePerCapita,
+    onEachFeature: onEachFeature
+}).addTo(overlays.coTwoPerCapita);
+
+
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
