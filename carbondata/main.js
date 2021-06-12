@@ -1,6 +1,6 @@
 let baselayers = {
     standard: L.tileLayer.provider("OpenStreetMap.DE"),
-    darkMode: L.tileLayer.provider("Stamen.TonerBackground"),
+    //darkMode: L.tileLayer.provider("Stamen.TonerBackground"),
     //terrain: L.tileLayer.provider("OpenTopoMap"),
 };
 
@@ -26,11 +26,13 @@ const map = L.map("map", {
 });
 
 //Hier muss der Style noch angepasst werden damit es nicht zentriert ist
-let layerControl = L.control.layers({
-    "Standard": baselayers.standard,
-    "Dark Mode": baselayers.darkMode,
+//let layerControl = L.control.layers({
+    //"Standard": baselayers.standard,
+    //"Dark Mode": baselayers.darkMode,
     //"Relief": baselayers.terrain,
-}, {
+//}).addTo(map);
+
+let overlayControl = L.control.layers({
     "CO2": overlays.coTwo,
     "CO2 pro Person": overlays.coTwoPerCapita,
 }).addTo(map);
