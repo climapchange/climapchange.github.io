@@ -53,6 +53,10 @@ main h2 {
     color: #fff;
 }
 
+.h4 {
+    font-weight: bold;
+}
+
 #navigation a:hover {
     color: rgba(18, 183, 224, 0.89)
 }
