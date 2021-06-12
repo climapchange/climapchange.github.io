@@ -60,8 +60,8 @@ main h2 {
 .text {
     hyphens: auto; 
 	text-align: justify;
-    margin-right: 2em;
-    margin-left: 2em;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
 }
 
 #navigation a:hover {
