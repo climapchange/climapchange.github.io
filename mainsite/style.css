@@ -1,15 +1,15 @@
 body {
     max-width: 1280px;
     margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 header {
     text-align: center;
 }
 
-header h1{
-    font-family: Arial, Helvetica, sans-serif;
+header h1 {
+    font-family: 'Raleway', sans-serif;
     font-size: 34px;
     text-shadow: 0 0 5px gray;
     color: #fff;
@@ -27,10 +27,20 @@ header .quelle {
     margin-top: -4em;
     color: #fff;
 }
-
-.quelle 
+.quelle,
 .quelle a:link,
-.quelle a:visited{
+.quelle a:visited {
+    color: #fff;
+}
+
+a:link,
+a:visited {
+    color: black
+}
+
+header .quelle 
+.quelle a:link,
+.quelle a:visited {
     color: #fff;
 }
 
@@ -39,7 +49,6 @@ header img{
     height: 365px;
     margin-top: 16px;
     margin-bottom: 16px;
-
 }
 
 main {
@@ -48,7 +57,6 @@ main {
 }
 
 main h2 {
-    
     background-color: #11828a;
     color: #fff;
 }
@@ -64,6 +72,36 @@ main h2 {
     margin-left: 1.5em;
 }
 
-#navigation a:hover {
-    color: rgba(18, 183, 224, 0.89)
+footer {
+    padding: 1em 0 3em 0;
+}
+
+.next {
+    float: right;
+    size: 2cm;
+    margin-right: 0.3em;
+}
+
+a:hover {
+    color: rgba(16, 151, 185, 0.89)
+}
+
+@media screen and (max-width: 900px) {
+    header {
+        max-width: 90%;
+    }
+    
+    main {
+        max-width: 90%;
+    }
+
+    footer {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    header img.banner {
+        width: 100vw;
+    }
 }
