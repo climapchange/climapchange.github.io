@@ -1,11 +1,24 @@
-function getColor(coData) {
-    return coData > 99998 ? '#bdbdbd' :
-        coData > 1000 ? '#b10026' :
-        coData > 500 ? '#e31a1c' :
-        coData > 200 ? '#fc4e2a' :
-        coData > 100 ? '#fd8d3c' :
-        coData > 50 ? '#feb24c' :
-        coData > 20 ? '#fed976' :
-        coData > 10 ? '#ffeda0' :
+function getColorCo(data) {
+    return data > 99998 ? '#bdbdbd' :
+        data > 10000 ? '#b10026' :
+        data > 1000 ? '#b10026' :
+        data > 500 ? '#e31a1c' :
+        data > 200 ? '#fc4e2a' :
+        data > 100 ? '#fd8d3c' :
+        data > 50 ? '#feb24c' :
+        data > 20 ? '#fed976' :
+        data > 10 ? '#ffeda0' :
+        '#ffffcc';
+}
+
+function getColorCoPerCapita(data) {
+    return data > 99998 ? '#bdbdbd' :
+        data > 20 ? '#b10026' :
+        data > 15 ? '#e31a1c' :
+        data > 10 ? '#fc4e2a' :
+        data > 5 ? '#fd8d3c' :
+        data > 2 ? '#feb24c' :
+        data > 1 ? '#fed976' :
+        data > 0.5 ? '#ffeda0' :
         '#ffffcc';
 }
