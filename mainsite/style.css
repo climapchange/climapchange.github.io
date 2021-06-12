@@ -57,6 +57,13 @@ main h2 {
     font-weight: bold;
 }
 
+.text {
+    hyphens: auto; 
+	text-align: justify;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
 #navigation a:hover {
     color: rgba(18, 183, 224, 0.89)
 }
