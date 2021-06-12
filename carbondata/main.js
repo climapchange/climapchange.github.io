@@ -92,7 +92,7 @@ function onEachFeature(feature, layer) {
 // CO2
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
-L.geoJson(COUNTRY).addTo(overlays.coTwo).addTo(map)
+L.geoJson(COUNTRY).addTo(overlays.coTwo)
 //overlays.coTwo.addTo(map)
 //Zoom an Polys anpassen
 map.fitBounds(overlays.coTwo.getBounds());
@@ -124,7 +124,7 @@ geojson = L.geoJson(COUNTRY, {
 // CO2 per capita
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
-L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita).addTo(map)
+L.geoJson(COUNTRY).addTo(overlays.coTwoPerCapita)
 overlays.coTwoPerCapita.addTo(map)
 
 //Style der Polys CO2 per Capita
@@ -161,7 +161,10 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen pro Jahr</h4>' + (props ?
         '<b>' + props.properties.name + '</b><br />' +
-        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen' :
+        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen' + '</b><br />' +
+        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' Tonnen pro Person' + '</b><br />' +
+        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' % des globalen Ausstoß' + '</b><br />' +
+        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' kummulierter Ausstoß':
         'Hover über einen Staat');
 };
 info.addTo(map);
