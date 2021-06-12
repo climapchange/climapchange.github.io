@@ -2,30 +2,36 @@ body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Raleway', sans-serif;
-    text-align: center;
 }
+
 header {
     text-align: center;
 }
 
-header h1{
+header h1 {
+    font-family: 'Raleway', sans-serif;
     font-size: 34px;
-    text-shadow: 0 0 5px grey;
+    text-shadow: 0 0 5px gray;
     color: #fff;
-    background-color: #0a8992;
+    background-color:#0a8992;
     font-weight: bold;
     text-align: center;
     margin: 16px;
-
 }
+
 header img{
     width: 1200px;
     height: 365px;
     margin-top: 16px;
     margin-bottom: 16px;
-
 }
-header .quelle {
+
+main {
+    text-align: center;
+    margin: 16px;
+}
+
+.quelle {
     text-align: right;
     font-size: 0.8em;
     padding-right: 4em;
@@ -33,10 +39,30 @@ header .quelle {
     color: #fff;
 }
 
-.quelle 
+.quelle, 
 .quelle a:link,
 .quelle a:visited{
     color: #fff;
+}
+
+main h2 {
+    background-color: #11828a;
+    color: #fff;
+}
+
+a:link,
+a:visited {
+    color: black
+}
+
+.text {
+    hyphens: auto; 
+	text-align: justify;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+}
+.h4 {
+    font-weight: bold;
 }
 
 #map {
@@ -44,6 +70,21 @@ header .quelle {
     height: 90vh;
     border: 1px solid gray;
     margin: auto;
+}
+
+footer {
+    padding: 1em 0 3em 0;
+}
+
+.next {
+    float: right;
+    size: 9x;
+    margin-right: 1.0em;
+    color:  rgba(16, 151, 185, 0.89);
+}
+
+a:hover {
+    color: rgba(16, 151, 185, 0.89)
 }
 
 .info {

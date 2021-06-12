@@ -23,9 +23,9 @@ header img{
     height: 365px;
     margin-top: 16px;
     margin-bottom: 16px;
-
 }
-header .quelle {
+
+.quelle {
     text-align: right;
     font-size: 0.8em;
     padding-right: 4em;
@@ -35,8 +35,23 @@ header .quelle {
 
 .quelle 
 .quelle a:link,
-.quelle a:visited{
+.quelle a:visited {
     color: #fff;
+}
+
+a:link,
+a:visited {
+    color: black
+}
+
+.text {
+    hyphens: auto; 
+	text-align: justify;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+}
+.h4 {
+    font-weight: bold;
 }
 
 #map {
@@ -45,9 +60,19 @@ header .quelle {
     border: 1px solid gray;
     margin: auto;
 }
+footer {
+    padding: 1em 0 3em 0;
+}
 
-#navigation a:hover {
-    color: rgba(18, 183, 224, 0.89)
+.next {
+    float: right;
+    size: 9x;
+    margin-right: 1.0em;
+    color:  rgba(16, 151, 185, 0.89);
+}
+
+a:hover {
+    color: rgba(16, 151, 185, 0.89)
 }
 
 .info {
