@@ -76,6 +76,11 @@ main h2 {
     margin: auto;
 }
 
+main ul {
+    width: 560px;
+    margin: auto;
+}
+
 footer {
     padding: 2em 0 3em 0;
 }
