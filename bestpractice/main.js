@@ -51,7 +51,8 @@ var UmweltIcon = new LeafIcon({iconUrl: 'icons/tree.png'}),
 
 
 for (let entry of UMWELT) {
-    console.log(entry);
+    //console.log(entry);
+
     let mrk = L.marker([entry.lat, entry.lng], {icon: UmweltIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
@@ -63,7 +64,7 @@ for (let entry of UMWELT) {
 }
 
 for (let entry of SOZIALES) {
-    console.log(entry);
+    //console.log(entry);
     let mrk = L.marker([entry.lat, entry.lng], {icon: SozialIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
@@ -75,7 +76,7 @@ for (let entry of SOZIALES) {
 }
 
 for (let entry of STADTENTWICKLUNG) {
-    console.log(entry);
+    //console.log(entry);
     let mrk = L.marker([entry.lat, entry.lng], {icon: StadtIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
@@ -88,7 +89,7 @@ for (let entry of STADTENTWICKLUNG) {
 
 
 for (let entry of GESUNDHEIT) {
-    console.log(entry);
+    //console.log(entry);
     let mrk = L.marker([entry.lat, entry.lng], {icon: GesundheitIcon}).addTo(map);
     mrk.bindPopup(`<h1>${entry.user}<h1>
     <h2>${entry.intro}</h2>
@@ -111,3 +112,16 @@ var miniMap = new L.Control.MiniMap(
     }
 ).addTo(map);
 
+//Search
+/* Search control */
+map.addControl(new L.Control.Search({
+    url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+    jsonpParam: 'json_callback',
+    propertyName: 'display_name',
+    propertyLoc: ['lat','lon'],
+    markerLocation: true,
+    autoType: false,
+    autoCollapse: true,
+    minLength: 2,
+    zoom:16
+}));
