@@ -39,7 +39,7 @@ var LeafIcon = L.Icon.extend({
     options: {
         iconSize:     [38, 38], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        popupAnchor:  [-2, -90] // point from which the popup should open relative to the iconAnchor
     }
 });
 
@@ -112,7 +112,7 @@ var miniMap = new L.Control.MiniMap(
     }
 ).addTo(map);
 
-//Search
+
 /* Search control */
 map.addControl(new L.Control.Search({
     url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
@@ -125,3 +125,4 @@ map.addControl(new L.Control.Search({
     minLength: 2,
     zoom:16
 }));
+
