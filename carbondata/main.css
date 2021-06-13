@@ -98,3 +98,19 @@ a:hover {
     margin: 0 0 5px;
     color: #777;
 }
+
+footer {
+    padding: 2em 0 3em 0;
+}
+
+.next {
+    float: right;
+    margin-right: 1.0em;
+    color:  rgba(16, 151, 185, 0.89)
+}
+
+.back {
+    float: left;
+    margin-left: 1.0em;
+    color:  rgba(16, 151, 185, 0.89)
+}
