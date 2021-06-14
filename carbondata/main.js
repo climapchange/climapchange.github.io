@@ -1,14 +1,13 @@
 let baselayers = {
     standard: L.tileLayer.provider("OpenStreetMap.DE"),
-    //darkMode: L.tileLayer.provider("Stamen.TonerBackground"),
-    //terrain: L.tileLayer.provider("OpenTopoMap"),
 };
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 let overlays = {
     coTwo: L.featureGroup(),
+    coTwoGlobalShare: L.featureGroup(),
     coTwoPerCapita: L.featureGroup(),
-    coTwoGlobalShare: L.featureGroup()
+    coTwoCumu: L.featureGroup(),
 };
 
 let bounds = [
@@ -26,17 +25,11 @@ const map = L.map("map", {
     maxBounds: bounds
 });
 
-//Hier muss der Style noch angepasst werden damit es nicht zentriert ist
-//let layerControl = L.control.layers({
-    //"Standard": baselayers.standard,
-    //"Dark Mode": baselayers.darkMode,
-    //"Relief": baselayers.terrain,
-//}).addTo(map);
-
 let overlayControl = L.control.layers({
-    "CO2": overlays.coTwo,
-    "CO2 pro Person": overlays.coTwoPerCapita,
-    "CO2 Anteil global": overlays.coTwoGlobalShare,
+    "CO2-Emission pro Jahr": overlays.coTwo,
+    "Anteil jährlicher Emissionen": overlays.coTwoGlobalShare,
+    "Emissionen pro Person": overlays.coTwoPerCapita,
+    "Kumulierter Ausstoß": overlays.coTwoCumu,
 }).addTo(map);
 
 
@@ -124,6 +117,30 @@ geojson = L.geoJson(COUNTRY, {
 }).addTo(overlays.coTwo);
 
 
+// CO2 GLOBAL SHARE
+
+L.geoJson(COUNTRY).addTo(overlays.coTwoGlobalShare)
+//overlays.coTwoGlobalShare.addTo(map)
+
+function styleGlobalShare(feature) {
+    return {
+        fillColor: getColorCoGlobalShare(getData(feature.properties.name_long, "share_global_co2")),
+        weight: 2,
+        opacity: 0.5,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+}
+L.geoJson(COUNTRY, {
+    style: styleGlobalShare
+}).addTo(overlays.coTwoGlobalShare);
+
+geojson = L.geoJson(COUNTRY, {
+    style: styleGlobalShare,
+    onEachFeature: onEachFeature
+}).addTo(overlays.coTwoGlobalShare);
+
 
 // CO2 per capita
 
@@ -150,14 +167,14 @@ geojson = L.geoJson(COUNTRY, {
 }).addTo(overlays.coTwoPerCapita);
 
 
-// CO2 GLOBAL SHARE
+// CO2 kumuliert
 
-L.geoJson(COUNTRY).addTo(overlays.coTwoGlobalShare)
-overlays.coTwoGlobalShare.addTo(map)
+L.geoJson(COUNTRY).addTo(overlays.coTwoCumu)
+overlays.coTwoCumu.addTo(map)
 
-function styleGlobalShare(feature) {
+function styleCumu(feature) {
     return {
-        fillColor: getColorCoGlobalShare(getData(feature.properties.name_long, "share_global_co2")),
+        fillColor: getColorCoCumu(getData(feature.properties.name_long, "cumulative_co2")),
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -166,13 +183,14 @@ function styleGlobalShare(feature) {
     };
 }
 L.geoJson(COUNTRY, {
-    style: styleGlobalShare
-}).addTo(overlays.coTwoGlobalShare);
+    style: styleCumu
+}).addTo(overlays.coTwoCumu);
 
 geojson = L.geoJson(COUNTRY, {
-    style: styleGlobalShare,
+    style: styleCumu,
     onEachFeature: onEachFeature
-}).addTo(overlays.coTwoGlobalShare);
+}).addTo(overlays.coTwoCumu);
+
 
 
 // Anzeige oben Rechts. Style siehe CSS
