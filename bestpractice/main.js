@@ -1,6 +1,12 @@
 
-var map = L.map('map', {
+let bounds = [
+    [45, 10], // Southwest coordinates
+    [49, 16] // Northeast coordinates
+]
+
+const map = L.map('map', {
     fullscreenControl: true,
+    maxBounds: bounds
 }).setView([47.791, 13.217], 7);
 
 
@@ -9,7 +15,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-//Marker Cluster
+
+
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 
@@ -24,11 +31,11 @@ let overlays = {
 
 //  Overlays zur Layer-Control hinzufügen
 let layerControl = L.control.layers({
+},{
     "Stadtentwicklung": overlays.Stadtentwicklung,
     "Gesundheit": overlays.Gesundheit,
     "Soziales": overlays.Soziales,
     "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima,
-    "Alle Organisationen": overlays.AlleOrganisationen
 
 }).addTo(map);
 
@@ -37,7 +44,9 @@ overlays.Stadtentwicklung.addTo(map);
 overlays.Gesundheit.addTo(map);
 overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
-overlays.AlleOrganisationen.addTo(map)
+
+
+ 
 
 
 //Icons
@@ -132,3 +141,4 @@ map.addControl(new L.Control.Search({
     minLength: 2,
     zoom:16
 }));
+
