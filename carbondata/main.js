@@ -8,6 +8,7 @@ let overlays = {
     coTwoGlobalShare: L.featureGroup(),
     coTwoPerCapita: L.featureGroup(),
     coTwoCumu: L.featureGroup(),
+    coTwoCumuShare: L.featureGroup(),
 };
 
 let bounds = [
@@ -29,7 +30,8 @@ let overlayControl = L.control.layers({
     "CO2-Emission pro Jahr": overlays.coTwo,
     "Anteil jährlicher Emissionen": overlays.coTwoGlobalShare,
     "Emissionen pro Person": overlays.coTwoPerCapita,
-    "Kumulierter Ausstoß": overlays.coTwoCumu,
+    "Kumulierte Emissionen": overlays.coTwoCumu,
+    "Anteil kumulierter Emissionen": overlays.coTwoCumuShare,
 }).addTo(map);
 
 
@@ -170,7 +172,7 @@ geojson = L.geoJson(COUNTRY, {
 // CO2 kumuliert
 
 L.geoJson(COUNTRY).addTo(overlays.coTwoCumu)
-overlays.coTwoCumu.addTo(map)
+//overlays.coTwoCumu.addTo(map)
 
 function styleCumu(feature) {
     return {
@@ -192,6 +194,31 @@ geojson = L.geoJson(COUNTRY, {
 }).addTo(overlays.coTwoCumu);
 
 
+// CO2 GLOBAL SHARE KUMULIERT
+
+L.geoJson(COUNTRY).addTo(overlays.coTwoCumuShare)
+overlays.coTwoCumuShare.addTo(map)
+
+function styleCumuShare(feature) {
+    return {
+        fillColor: getColorCoCumuShare(getData(feature.properties.name_long, "share_global_cumulative_co2")),
+        weight: 2,
+        opacity: 0.5,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+}
+L.geoJson(COUNTRY, {
+    style: styleCumuShare
+}).addTo(overlays.coTwoCumuShare);
+
+geojson = L.geoJson(COUNTRY, {
+    style: styleCumuShare,
+    onEachFeature: onEachFeature
+}).addTo(overlays.coTwoCumuShare);
+
+
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
@@ -203,10 +230,11 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen</h4>' + (props ?
         '<b>' + props.properties.name + '</b><br />' +
-        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen' + '</b><br />' +
-        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' Tonnen pro Person' + '</b><br />' +
-        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' % des globalen Ausstoß' + '</b><br />' +
-        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' kummulierter Ausstoß':
+        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub> pro Jahr' + '</b><br />' +
+        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' % der globalen jährlichen Emissionen' + '</b><br />' +
+        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' Tonnen CO<sub>2</sub> pro Person und Jahr' + '</b><br />' +
+        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' kumulierte Emissionen in Millionen Tonnen' + '</b><br />' +
+        getData(props.properties.name_long, "share_global_cumulative_co2").toFixed(1) + ' % der globalen kumulierten Emissionen':
         'Hover über einen Staat');
 };
 info.addTo(map);
