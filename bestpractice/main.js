@@ -131,4 +131,3 @@ map.addControl(new L.Control.Search({
     minLength: 2,
     zoom:16
 }));
-
