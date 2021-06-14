@@ -44,7 +44,7 @@ overlays.AlleOrganisationen.addTo(map)
 var LeafIcon = L.Icon.extend({
     options: {
         iconSize:     [38, 38], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
         popupAnchor:  [-2, -90] // point from which the popup should open relative to the iconAnchor
     }
 });
