@@ -72,8 +72,8 @@ for (let entry of UMWELT) {
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
-    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
-    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+    <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i> Weiter zur Organisation</a></p>
 `).addTo(overlays.UmweltKlima);
 }
 
@@ -84,8 +84,8 @@ for (let entry of SOZIALES) {
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
-    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
-    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+    <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
 `).addTo(overlays.Soziales);
 }
 
@@ -96,8 +96,8 @@ for (let entry of STADTENTWICKLUNG) {
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
-    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
-    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+    <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
 `).addTo(overlays.Stadtentwicklung);
 }
 
@@ -109,8 +109,8 @@ for (let entry of GESUNDHEIT) {
     <h2>${entry.intro}</h2>
     <h3>${entry.about}</h3>
     <h3>Adresse: ${entry.Adresse}</h3>
-    <h3><i class="far fa-envelope mr-3" ></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
-    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3"></i>Weiter zur Organisation</a></p>
+    <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
 `).addTo(overlays.Gesundheit);
 }
 
@@ -127,18 +127,3 @@ var miniMap = new L.Control.MiniMap(
         minimized: false
     }
 ).addTo(map);
-
-
-/* Search control */
-map.addControl(new L.Control.Search({
-    url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-    jsonpParam: 'json_callback',
-    propertyName: 'display_name',
-    propertyLoc: ['lat','lon'],
-    markerLocation: true,
-    autoType: false,
-    autoCollapse: true,
-    minLength: 2,
-    zoom:16
-}));
-
