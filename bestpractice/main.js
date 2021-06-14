@@ -107,6 +107,7 @@ for (let entry of GESUNDHEIT) {
 
 
 
+
 // Leaflet hash
 var hash = new L.Hash(map);
 
