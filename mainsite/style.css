@@ -2,6 +2,7 @@ body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Raleway', sans-serif;
+    background-color:rgba(245, 245, 245, 0.986);
 }
 
 header {
