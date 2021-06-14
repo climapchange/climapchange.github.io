@@ -279,6 +279,7 @@ const SOZIALES = [
     },
 ];
 
+
 const UMWELT = [
     {
         nr: 1,
