@@ -1,12 +1,13 @@
 
 let bounds = [
-    [45, 10], // Southwest coordinates
-    [49, 16] // Northeast coordinates
+    [46, 8], // Southwest coordinates
+    [52, 18] // Northeast coordinates
 ]
 
 const map = L.map('map', {
     fullscreenControl: true,
-    maxBounds: bounds
+    maxBounds: bounds,
+    zoomControl: true
 }).setView([47.791, 13.217], 7);
 
 
@@ -15,13 +16,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-
-
-
 // Overlays für die Themen zum Ein- und Ausschalten definieren
 
 let overlays = {
-    AlleOrganisationen: L.markerClusterGroup(),
+
     UmweltKlima: L.markerClusterGroup(),
     Stadtentwicklung: L.markerClusterGroup(),
     Gesundheit: L.markerClusterGroup(),
@@ -39,6 +37,7 @@ let layerControl = L.control.layers({
 
 }).addTo(map);
 
+
 // alle Overlays nach dem Laden anzeigen
 overlays.Stadtentwicklung.addTo(map);
 overlays.Gesundheit.addTo(map);
@@ -54,7 +53,7 @@ var LeafIcon = L.Icon.extend({
     options: {
         iconSize:     [38, 38], // size of the icon
         iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
-        popupAnchor:  [-2, -90] // point from which the popup should open relative to the iconAnchor
+        popupAnchor:  [2, -38] // point from which the popup should open relative to the iconAnchor
     }
 });
 
@@ -117,6 +116,17 @@ for (let entry of GESUNDHEIT) {
 
 
 
+    //mrk.bindPopup(`<h1>${entry.user}<h1>
+    //<h2>${entry.intro}</h2>
+    //<h3>${entry.about}</h3>
+    //<h3>Adresse: ${entry.Adresse}</h3>
+    //<h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
+    //<p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
+    //`).addTo(overlays.Gesundheit);
+    
+
+
+
 // Leaflet hash
 var hash = new L.Hash(map);
 
@@ -127,3 +137,5 @@ var miniMap = new L.Control.MiniMap(
         minimized: false
     }
 ).addTo(map);
+
+
