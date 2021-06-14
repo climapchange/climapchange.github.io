@@ -32,6 +32,9 @@ let overlayControl = L.control.layers({
     "Emissionen pro Person": overlays.coTwoPerCapita,
     "Kumulierte Emissionen": overlays.coTwoCumu,
     "Anteil kumulierter Emissionen": overlays.coTwoCumuShare,
+}, null, {
+    position: 'bottomleft',
+    collapsed: false,
 }).addTo(map);
 
 
@@ -41,7 +44,7 @@ let overlayControl = L.control.layers({
 function getData(polyName, dataType) {
     let lastYear = CODATA[0].country[polyName].data.length - 1;
     let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    return(dataSelect);
+    return (dataSelect);
 }
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
@@ -228,13 +231,13 @@ info.onAdd = function (map) {
     return this._div;
 };
 info.update = function (props) {
-    this._div.innerHTML = '<h4>CO<sub>2</sub>-Emissionen</h4>' + (props ?
-        '<b>' + props.properties.name + '</b><br />' +
-        getData(props.properties.name_long, "co2").toFixed(1) + ' Millionen Tonnen CO<sub>2</sub> pro Jahr' + '</b><br />' +
-        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' % der globalen jährlichen Emissionen' + '</b><br />' +
-        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' Tonnen CO<sub>2</sub> pro Person und Jahr' + '</b><br />' +
-        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' kumulierte Emissionen in Millionen Tonnen' + '</b><br />' +
-        getData(props.properties.name_long, "share_global_cumulative_co2").toFixed(1) + ' % der globalen kumulierten Emissionen':
+    this._div.innerHTML = (props ?
+        '<b>' + props.properties.name + '</b><hr></hr>' +
+        getData(props.properties.name_long, "co2").toFixed(1) + ' Mio. t' + '</b><br/>' + ' CO<sub>2</sub>-Emission pro Jahr' + '<hr></hr>' +
+        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' %' + '</b><br/>' + ' der globalen Emissionen pro Jahr' + '<hr></hr>' +
+        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' t' + '</b><br/>' + ' CO<sub>2</sub>-Emissionen pro Person und Jahr' + '<hr></hr>' +
+        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' Mio. t' + '</b><br/>' + ' kumulierte Emissionen' + '<hr></hr>' +
+        getData(props.properties.name_long, "share_global_cumulative_co2").toFixed(1) + ' %' + '</b><br/>' + ' der globalen kumulierten Emissionen' :
         'Hover über einen Staat');
 };
 info.addTo(map);
