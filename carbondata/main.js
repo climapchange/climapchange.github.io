@@ -52,32 +52,15 @@ function getData(polyName, dataType) {
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
 let geojson = L.geoJson(COUNTRY);
 
-//Staaten werden gehighlighted beim herüberfahren
 function highlightFeature(e) {
     var layer = e.target;
-    /*
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.5
-    });
-    */
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    };
-
     info.update(layer.feature.properties);
-    //console.log((layer.feature))
-    //das wird runtergegeben an Infoanzeige
 }
-//Highlight zuruecksetzen beim weggehen mit der Maus
+
 function resetHighlight(e) {
-    //geojson.resetStyle(e.target);
     info.update();
 }
 
-//Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
@@ -89,14 +72,10 @@ function onEachFeature(feature, layer) {
 // OVERLAY-SPEZIFISCHER CODE!!!
 
 // CO2
-
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
 overlays.coTwo.addTo(map)
 
-//Style der Polys CO2
 function styleCo(feature) {
-    //console.log(feature);
     return {
         fillColor: getColorCo(getData(feature.properties.name_long, "co2")),
         weight: 2,
@@ -106,11 +85,7 @@ function styleCo(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleCo
-}).addTo(overlays.coTwo);
 
-//Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
     style: styleCo,
     onEachFeature: onEachFeature
@@ -132,9 +107,6 @@ function styleGlobalShare(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleGlobalShare
-}).addTo(overlays.coTwoGlobalShare);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleGlobalShare,
@@ -157,9 +129,6 @@ function stylePerCapita(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: stylePerCapita
-}).addTo(overlays.coTwoPerCapita);
 
 geojson = L.geoJson(COUNTRY, {
     style: stylePerCapita,
@@ -182,9 +151,6 @@ function styleCumu(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleCumu
-}).addTo(overlays.coTwoCumu);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleCumu,
@@ -207,10 +173,6 @@ function styleCumuShare(feature) {
         fillOpacity: 0.5
     };
 }
-
-L.geoJson(COUNTRY, {
-    style: styleCumuShare
-}).addTo(overlays.coTwoCumuShare);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleCumuShare,
