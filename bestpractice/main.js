@@ -1,7 +1,7 @@
 
 let bounds = [
-    [46, 8], // Southwest coordinates
-    [50.5, 18] // Northeast coordinates
+    [43, 8], // Southwest coordinates
+    [51.2, 18] // Northeast coordinates
 ]
 
 const map = L.map('map', {
@@ -40,6 +40,7 @@ let layerControl = L.control.layers({
         position: 'bottomleft',
         collapsed: false,
 
+
 }).addTo(map);
 
 
@@ -50,8 +51,6 @@ overlays.Gesundheit.addTo(map);
 overlays.Soziales.addTo(map);
 overlays.UmweltKlima.addTo(map);
 
-
- 
 
 
 //Icons
@@ -79,7 +78,7 @@ for (let entry of UMWELT) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i> Weiter zur Organisation</a></p>
-`,{maxHeight: 320}).addTo(overlays.UmweltKlima);
+`,{maxHeight: 310}).addTo(overlays.UmweltKlima);
 }
 
 for (let entry of SOZIALES) {
@@ -91,7 +90,7 @@ for (let entry of SOZIALES) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-`,{maxHeight: 320}).addTo(overlays.Soziales);
+`,{maxHeight: 310}).addTo(overlays.Soziales);
 }
 
 for (let entry of STADTENTWICKLUNG) {
@@ -103,7 +102,7 @@ for (let entry of STADTENTWICKLUNG) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-`,{maxHeight: 320}).addTo(overlays.Stadtentwicklung);
+`,{maxHeight: 310}).addTo(overlays.Stadtentwicklung);
 }
 
 
@@ -118,17 +117,6 @@ for (let entry of GESUNDHEIT) {
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
 `,{maxHeight: 320}).addTo(overlays.Gesundheit);
 }
-
-
-
-
-    //mrk.bindPopup(`<h1>${entry.user}<h1>
-    //<h2>${entry.intro}</h2>
-    //<h3>${entry.about}</h3>
-    //<h3>Adresse: ${entry.Adresse}</h3>
-    //<h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
-    //<p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-    //`).addTo(overlays.Gesundheit);
 
 
 // Leaflet hash
