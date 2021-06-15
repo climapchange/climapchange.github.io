@@ -89,14 +89,10 @@ function onEachFeature(feature, layer) {
 // OVERLAY-SPEZIFISCHER CODE!!!
 
 // CO2
-
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
 overlays.coTwo.addTo(map)
 
-//Style der Polys CO2
 function styleCo(feature) {
-    //console.log(feature);
     return {
         fillColor: getColorCo(getData(feature.properties.name_long, "co2")),
         weight: 2,
@@ -107,7 +103,6 @@ function styleCo(feature) {
     };
 }
 
-//Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
     style: styleCo,
     onEachFeature: onEachFeature
