@@ -46,10 +46,34 @@ main {
     color: #fff;
 }
 
+
+main h1 {
+    background-color: #11828a;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
 main h2 {
     background-color: #11828a;
     color: #fff;
     text-align: center;
+    
+}
+
+main h3 {
+    background-color: #c1f1f3;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+main h4 {
+    background-color: white;
+    color: black;
+    text-align: left;
+    font-weight: normal;
 }
 
 a:link,
