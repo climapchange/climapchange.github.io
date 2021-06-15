@@ -43,11 +43,10 @@ let overlayControl = L.control.layers({
 
 // FUNKTIONEN UNABHAENGIG VOM OVERLAY!!!
 
-// Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
+// Funktion um CODATA-Daten abzurufen
 function getData(polyName, dataType) {
     let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    return (dataSelect);
+    return CODATA[0].country[polyName].data[lastYear][dataType];
 }
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
@@ -90,14 +89,10 @@ function onEachFeature(feature, layer) {
 // OVERLAY-SPEZIFISCHER CODE!!!
 
 // CO2
-
-//Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
 overlays.coTwo.addTo(map)
 
-//Style der Polys CO2
 function styleCo(feature) {
-    //console.log(feature);
     return {
         fillColor: getColorCo(getData(feature.properties.name_long, "co2")),
         weight: 2,
@@ -107,11 +102,7 @@ function styleCo(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleCo
-}).addTo(overlays.coTwo);
 
-//Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
     style: styleCo,
     onEachFeature: onEachFeature
@@ -133,9 +124,6 @@ function styleGlobalShare(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleGlobalShare
-}).addTo(overlays.coTwoGlobalShare);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleGlobalShare,
@@ -158,9 +146,6 @@ function stylePerCapita(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: stylePerCapita
-}).addTo(overlays.coTwoPerCapita);
 
 geojson = L.geoJson(COUNTRY, {
     style: stylePerCapita,
@@ -183,9 +168,6 @@ function styleCumu(feature) {
         fillOpacity: 0.5
     };
 }
-L.geoJson(COUNTRY, {
-    style: styleCumu
-}).addTo(overlays.coTwoCumu);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleCumu,
@@ -208,10 +190,6 @@ function styleCumuShare(feature) {
         fillOpacity: 0.5
     };
 }
-
-L.geoJson(COUNTRY, {
-    style: styleCumuShare
-}).addTo(overlays.coTwoCumuShare);
 
 geojson = L.geoJson(COUNTRY, {
     style: styleCumuShare,
