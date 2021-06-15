@@ -1,7 +1,7 @@
 
 let bounds = [
     [46, 8], // Southwest coordinates
-    [50, 18] // Northeast coordinates
+    [50.5, 18] // Northeast coordinates
 ]
 
 const map = L.map('map', {
