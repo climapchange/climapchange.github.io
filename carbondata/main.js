@@ -191,7 +191,7 @@ function getDataPrint(polyName, dataType, einheit) {
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
 info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
 };
