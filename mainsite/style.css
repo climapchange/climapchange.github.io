@@ -2,7 +2,7 @@ body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Raleway', sans-serif;
-    background-color:rgba(245, 245, 245, 0.986);
+    background-color: rgba(250, 255, 255, 0.986);
 }
 
 header {
@@ -10,7 +10,6 @@ header {
 }
 
 header h1 {
-    font-family: 'Raleway', sans-serif;
     font-size: 34px;
     text-shadow: 0 0 5px gray;
     color: #fff;
@@ -21,8 +20,9 @@ header h1 {
 }
 
 header img{
-    width: 1200px;
-    height: 365px;
+    max-width: 100%;
+    height:auto;
+    width: auto;
     margin-top: 16px;
     margin-bottom: 16px;
 }
@@ -71,19 +71,23 @@ main h2 {
     font-size: 12px;
 }
 .pic {
-    width: 560px;
-    height: 315px;
+    max-width: 100%;
+    height:315;
+    width: 560;
     border: 1px solid gray;
     margin: auto;
 }
 
 main ul {
-    width: 560px;
+    max-width: 80%;
+    height:auto;
+    width: auto;
     margin: auto;
 }
 
 footer {
     padding: 2em 0 3em 0;
+    margin: auto;
 }
 
 .next {
@@ -95,16 +99,4 @@ footer {
 
 a:hover {
     color: rgba(16, 151, 185, 0.89)
-}
-
-@media screen and (max-width: 900px) {
-    main {
-        max-width: 90%;
-    }
-}
-
-@media screen and (max-width: 1280px) {
-    header img.banner {
-        width: 100vw;
-    }
 }

@@ -2,8 +2,9 @@ body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Raleway', sans-serif;
-    text-align: center;
+    background-color: rgba(250, 255, 255, 0.986);
 }
+
 header {
     text-align: center;
 }
@@ -19,8 +20,9 @@ header h1{
 
 }
 header img{
-    width: 1200px;
-    height: 365px;
+    max-width: 100%;
+    height:auto;
+    width: auto;
     margin-top: 16px;
     margin-bottom: 16px;
 }
@@ -101,6 +103,7 @@ a:hover {
 
 footer {
     padding: 2em 0 3em 0;
+    margin: auto;
 }
 
 .next {
