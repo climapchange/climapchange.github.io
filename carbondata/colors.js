@@ -1,17 +1,17 @@
 function getColorCo(data) {
-    return data > 9999998 ? '#bdbdbd' :
+        return data > 9999998 ? '#bdbdbd' :
         data > 10000 ? '#b10026' :
-        data > 1000 ? '#b10026' :
-        data > 500 ? '#e31a1c' :
-        data > 100 ? '#fd8d3c' :
-        data > 50 ? '#feb24c' :
-        data > 20 ? '#fed976' :
+        data > 5000 ? '#e31a1c' :
+        data > 1000 ? '#fc4e2a' :
+        data > 500 ? '#fd8d3c' :
+        data > 100 ? '#feb24c' :
+        data > 50 ? '#fed976' :
         data > 10 ? '#ffeda0' :
-        data > 0 ? '#ffeda0' :
-        '#ffffcc';
+        data > 0 ? '#ffffcc' :
+        '#bdbdbd';
 }
 
-function getColorCoGlobalShare(data) {
+function getColorCoGlobalShare(data) {  
     return data > 9999998 ? '#bdbdbd' :
         data > 25 ? '#b10026' :
         data > 20 ? '#e31a1c' :
@@ -20,8 +20,8 @@ function getColorCoGlobalShare(data) {
         data > 5 ? '#feb24c' :
         data > 1 ? '#fed976' :
         data > 0.5 ? '#ffeda0' :
-        data > 0 ? '#ffeda0' :
-        '#ffffcc';
+        data > 0 ? '#ffffcc' :
+        '#bdbdbd';
 }
 
 function getColorCoPerCapita(data) {
@@ -30,25 +30,23 @@ function getColorCoPerCapita(data) {
         data > 15 ? '#e31a1c' :
         data > 10 ? '#fc4e2a' :
         data > 5 ? '#fd8d3c' :
-        data > 2 ? '#feb24c' :
-        data > 1 ? '#fed976' :
-        data > 0.5 ? '#ffeda0' :
-        data > 0 ? '#ffeda0' :
-        '#ffffcc';
+        data > 1.5 ? '#feb24c' :
+        data > 0 ? '#addd8e' :
+        '#bdbdbd';
 }
 
 function getColorCoCumu(data) {
     return data > 9999998 ? '#bdbdbd' :
-        data > 10000 ? '#b10026' :
-        data > 1000 ? '#b10026' :
-        data > 500 ? '#e31a1c' :
-        data > 200 ? '#fc4e2a' :
-        data > 100 ? '#fd8d3c' :
-        data > 50 ? '#feb24c' :
-        data > 20 ? '#fed976' :
-        data > 10 ? '#ffeda0' :
-        data > 0 ? '#ffeda0' :
-        '#ffffcc';
+        data > 400000 ? '#800026' :
+        data > 200000 ? '#bd0026' :
+        data > 100000 ? '#e31a1c' :
+        data > 50000 ? '#fc4e2a' :
+        data > 10000 ? '#fd8d3c' :
+        data > 5000 ? '#feb24c' :
+        data > 1000 ? '#fed976' :
+        data > 500 ? '#ffeda0' :
+        data > 0 ? '#ffffcc' :
+        '#bdbdbd';
 }
 
 function getColorCoCumuShare(data) {
@@ -60,6 +58,6 @@ function getColorCoCumuShare(data) {
         data > 5 ? '#feb24c' :
         data > 1 ? '#fed976' :
         data > 0.5 ? '#ffeda0' :
-        data > 0 ? '#ffeda0' :
-        '#fffff';
+        data > 0 ? '#ffffcc' :
+        '#bdbdbd';
 }

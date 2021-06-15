@@ -68,7 +68,7 @@ function highlightFeature(e) {
         layer.bringToFront();
     };
 
-    info.update(layer.feature);
+    info.update(layer.feature.properties);
     //console.log((layer.feature))
     //das wird runtergegeben an Infoanzeige
 }
@@ -93,7 +93,7 @@ function onEachFeature(feature, layer) {
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
-//overlays.coTwo.addTo(map)
+overlays.coTwo.addTo(map)
 
 //Style der Polys CO2
 function styleCo(feature) {
@@ -196,7 +196,7 @@ geojson = L.geoJson(COUNTRY, {
 // CO2 GLOBAL SHARE KUMULIERT
 
 L.geoJson(COUNTRY).addTo(overlays.coTwoCumuShare)
-overlays.coTwoCumuShare.addTo(map)
+//overlays.coTwoCumuShare.addTo(map)
 
 function styleCumuShare(feature) {
     return {
@@ -218,7 +218,14 @@ geojson = L.geoJson(COUNTRY, {
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwoCumuShare);
 
-
+//Funktion um NoMatch zu benennen
+function getDataPrint(polyName, dataType, einheit) {
+    if(getData(polyName, dataType) === 9999999) {
+        return "Keine Daten vorhanden";
+      } else {
+        return getData(polyName, dataType).toFixed(1) + einheit;
+      }
+}
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
@@ -229,14 +236,12 @@ info.onAdd = function (map) {
 };
 info.update = function (props) {
     this._div.innerHTML = (props ?
-        '<b>' + props.properties.name + '</b><hr></hr>' +
-        getData(props.properties.name_long, "co2").toFixed(1) + ' Mio. t' + '</b><br/>' + ' CO<sub>2</sub>-Emission pro Jahr' + '<hr></hr>' +
-        getData(props.properties.name_long, "share_global_co2").toFixed(1) + ' %' + '</b><br/>' + ' der globalen Emissionen pro Jahr' + '<hr></hr>' +
-        getData(props.properties.name_long, "co2_per_capita").toFixed(1) + ' t' + '</b><br/>' + ' CO<sub>2</sub>-Emissionen pro Person und Jahr' + '<hr></hr>' +
-        getData(props.properties.name_long, "cumulative_co2").toFixed(1) + ' Mio. t' + '</b><br/>' + ' kumulierte Emissionen' + '<hr></hr>' +
-        getData(props.properties.name_long, "share_global_cumulative_co2").toFixed(1) + ' %' + '</b><br/>' + ' der globalen kumulierten Emissionen' :
+        '<b>' + props.name + '</b><hr></hr>' +
+        getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr") + '<hr></hr>' +
+        getDataPrint(props.name_long, "share_global_co2", " % </b><br/> der globalen Emissionen pro Jahr") + '<hr></hr>' +
+        getDataPrint(props.name_long, "co2_per_capita", " t </b><br/>  CO<sub>2</sub>-Emissionen pro Person und Jahr") + '<hr></hr>' +
+        getDataPrint(props.name_long, "cumulative_co2", " Mio. t </b><br/> kumulierte Emissionen") + '<hr></hr>' +
+        getDataPrint(props.name_long, "share_global_cumulative_co2", " % </b><br/> der globalen kumulierten Emissionen") :
         'Hover über einen Staat');
 };
 info.addTo(map);
-
-//Hier kann noch eine Legende eingefuegt werden: https://leafletjs.com/examples/choropleth/ 
