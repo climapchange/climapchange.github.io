@@ -28,7 +28,7 @@ header img{
 }
 
 main {
-    text-align: center;
+    text-align: left;
     margin: 16px;
 }
 
@@ -49,6 +49,7 @@ main {
 main h2 {
     background-color: #11828a;
     color: #fff;
+    text-align: center;
 }
 
 a:link,
@@ -58,12 +59,13 @@ a:visited {
 
 .text {
     hyphens: auto; 
-	text-align: justify;
+	text-align: center;
     margin-right: 1.5em;
     margin-left: 1.5em;
 }
 .h4 {
     font-weight: bold;
+    text-align: center;
 }
 
 #map {
@@ -139,3 +141,6 @@ footer {
         width: 100vw;
     }
 }
+
+
+.leaflet-control-layers-base {  text-align: left; }
