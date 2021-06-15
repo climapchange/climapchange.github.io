@@ -36,7 +36,10 @@ let layerControl = L.control.layers({
     "Stadtentwicklung": overlays.Stadtentwicklung,
     "Gesundheit": overlays.Gesundheit,
     "Soziales": overlays.Soziales,
-    "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima,
+    "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima}, 
+    {
+        position: 'topright',
+        collapsed: false,
 
 }).addTo(map);
 
