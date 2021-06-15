@@ -11,10 +11,7 @@ function getColorCo(data) {
         '#bdbdbd';
 }
 
-function getColorCoGlobalShare(data) {
-/*    data = chroma.scale(['green', 'red']).domain([0,100]).colors(6);
-    return data;
-*/    
+function getColorCoGlobalShare(data) {  
     return data > 9999998 ? '#bdbdbd' :
         data > 25 ? '#b10026' :
         data > 20 ? '#e31a1c' :
