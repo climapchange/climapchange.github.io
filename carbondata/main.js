@@ -43,11 +43,10 @@ let overlayControl = L.control.layers({
 
 // FUNKTIONEN UNABHAENGIG VOM OVERLAY!!!
 
-// Funktion um CODATA-Daten abzurufen. Beim Call muss (properties.name, "dataType") <- z.B. "co2" eingetragen werden.
+// Funktion um CODATA-Daten abzurufen
 function getData(polyName, dataType) {
     let lastYear = CODATA[0].country[polyName].data.length - 1;
-    let dataSelect = CODATA[0].country[polyName].data[lastYear][dataType];
-    return (dataSelect);
+    return CODATA[0].country[polyName].data[lastYear][dataType];
 }
 
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
