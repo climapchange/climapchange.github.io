@@ -1,5 +1,5 @@
 function getColorCo(data) {
-    return data > 99998 ? '#bdbdbd' :
+    return data > 9999998 ? '#bdbdbd' :
         data > 10000 ? '#b10026' :
         data > 1000 ? '#b10026' :
         data > 500 ? '#e31a1c' :
@@ -8,11 +8,12 @@ function getColorCo(data) {
         data > 50 ? '#feb24c' :
         data > 20 ? '#fed976' :
         data > 10 ? '#ffeda0' :
+        data > 0 ? '#ffeda0' :
         '#ffffcc';
 }
 
 function getColorCoGlobalShare(data) {
-    return data > 99998 ? '#bdbdbd' :
+    return data > 9999998 ? '#bdbdbd' :
         data > 25 ? '#b10026' :
         data > 20 ? '#e31a1c' :
         data > 15 ? '#fc4e2a' :
@@ -20,11 +21,12 @@ function getColorCoGlobalShare(data) {
         data > 5 ? '#feb24c' :
         data > 1 ? '#fed976' :
         data > 0.5 ? '#ffeda0' :
+        data > 0 ? '#ffeda0' :
         '#ffffcc';
 }
 
 function getColorCoPerCapita(data) {
-    return data > 99998 ? '#bdbdbd' :
+    return data > 9999998 ? '#bdbdbd' :
         data > 20 ? '#b10026' :
         data > 15 ? '#e31a1c' :
         data > 10 ? '#fc4e2a' :
@@ -32,11 +34,12 @@ function getColorCoPerCapita(data) {
         data > 2 ? '#feb24c' :
         data > 1 ? '#fed976' :
         data > 0.5 ? '#ffeda0' :
+        data > 0 ? '#ffeda0' :
         '#ffffcc';
 }
 
 function getColorCoCumu(data) {
-    return data > 99998 ? '#bdbdbd' :
+    return data > 9999998 ? '#bdbdbd' :
         data > 10000 ? '#b10026' :
         data > 1000 ? '#b10026' :
         data > 500 ? '#e31a1c' :
@@ -45,11 +48,12 @@ function getColorCoCumu(data) {
         data > 50 ? '#feb24c' :
         data > 20 ? '#fed976' :
         data > 10 ? '#ffeda0' :
+        data > 0 ? '#ffeda0' :
         '#ffffcc';
 }
 
-function getColorCumuShare(data) {
-    return data > 99998 ? '#bdbdbd' :
+function getColorCoCumuShare(data) {
+    return data > 9999998 ? '#bdbdbd' :
         data > 25 ? '#b10026' :
         data > 20 ? '#e31a1c' :
         data > 15 ? '#fc4e2a' :
@@ -57,5 +61,6 @@ function getColorCumuShare(data) {
         data > 5 ? '#feb24c' :
         data > 1 ? '#fed976' :
         data > 0.5 ? '#ffeda0' :
-        '#ffffcc';
+        data > 0 ? '#ffeda0' :
+        '#fffff';
 }

@@ -26,6 +26,8 @@ const map = L.map("map", {
     maxBounds: bounds
 });
 
+map.setMinZoom( map.getBoundsZoom( map.options.maxBounds ) );
+
 let overlayControl = L.control.layers({
     "CO2-Emission pro Jahr": overlays.coTwo,
     "Anteil jährlicher Emissionen": overlays.coTwoGlobalShare,
@@ -53,30 +55,26 @@ let geojson = L.geoJson(COUNTRY);
 //Staaten werden gehighlighted beim herüberfahren
 function highlightFeature(e) {
     var layer = e.target;
+    /*
     layer.setStyle({
         weight: 5,
         color: '#666',
         dashArray: '',
-        fillOpacity: 0.4
+        fillOpacity: 0.5
     });
+    */
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     };
+
     info.update(layer.feature);
     //console.log((layer.feature))
     //das wird runtergegeben an Infoanzeige
 }
 //Highlight zuruecksetzen beim weggehen mit der Maus
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
+    //geojson.resetStyle(e.target);
     info.update();
-}
-
-//Beim Klicken soll der Name gelogged werden
-function logName(e) {
-    return (e.target.feature.properties.name_long),
-        console.log(e.target.feature.properties.name_long)
-    //console.log(e.target.feature)
 }
 
 //Festlegen, wann welche Funktion ausgefuehrt wird
@@ -84,7 +82,6 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: logName
     });
 }
 
@@ -100,7 +97,7 @@ L.geoJson(COUNTRY).addTo(overlays.coTwo)
 map.fitBounds(overlays.coTwo.getBounds());
 
 //Style der Polys CO2
-function style(feature) {
+function styleCo(feature) {
     //console.log(feature);
     return {
         fillColor: getColorCo(getData(feature.properties.name_long, "co2")),
@@ -112,12 +109,12 @@ function style(feature) {
     };
 }
 L.geoJson(COUNTRY, {
-    style: style
+    style: styleCo
 }).addTo(overlays.coTwo);
 
 //Zur Karte und zum Overlay hinzufuegen
 geojson = L.geoJson(COUNTRY, {
-    style: style,
+    style: styleCo,
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwo);
 
@@ -204,7 +201,7 @@ overlays.coTwoCumuShare.addTo(map)
 
 function styleCumuShare(feature) {
     return {
-        fillColor: getColorCumuShare(getData(feature.properties.name_long, "share_global_cumulative_co2")),
+        fillColor: getColorCoCumuShare(getData(feature.properties.name_long, "share_global_cumulative_co2")),
         weight: 2,
         opacity: 0.5,
         color: 'white',
