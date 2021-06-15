@@ -52,32 +52,15 @@ function getData(polyName, dataType) {
 //Adding Interactions nach https://leafletjs.com/examples/choropleth/
 let geojson = L.geoJson(COUNTRY);
 
-//Staaten werden gehighlighted beim herüberfahren
 function highlightFeature(e) {
     var layer = e.target;
-    /*
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.5
-    });
-    */
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    };
-
     info.update(layer.feature.properties);
-    //console.log((layer.feature))
-    //das wird runtergegeben an Infoanzeige
 }
-//Highlight zuruecksetzen beim weggehen mit der Maus
+
 function resetHighlight(e) {
-    //geojson.resetStyle(e.target);
     info.update();
 }
 
-//Festlegen, wann welche Funktion ausgefuehrt wird
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
