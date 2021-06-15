@@ -148,23 +148,26 @@ footer {
 @media screen and (max-width: 900px) {
     main {
         max-width: 90%;
+        hyphens: auto;
     }
 
     footer {
         max-width: 100%;
+        hyphens: auto;
     }
 
     #map {
         max-width: 100%;
         max-height: 365px;
+        hyphens: auto;
     }
 }
 
 @media screen and (max-width: 1280px) {
     header img.banner {
         width: 100vw;
+        hyphens: auto;
     }
 }
 
 
-.leaflet-control-layers-base {  text-align: left; }
