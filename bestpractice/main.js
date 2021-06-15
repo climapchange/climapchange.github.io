@@ -122,7 +122,7 @@ for (let entry of GESUNDHEIT) {
 // Leaflet hash
 var hash = new L.Hash(map);
 
-//Minimap
+//Add Minimap
 var miniMap = new L.Control.MiniMap( 
     L.tileLayer.provider("BasemapAT.basemap"), {
         toggleDisplay: true,
@@ -130,3 +130,9 @@ var miniMap = new L.Control.MiniMap(
     }
 ).addTo(map);
 
+//Add Ssale bar
+L.control.scale({
+    metric: true,
+    imperial: false,
+    position: ('topleft')
+}).addTo(map);
