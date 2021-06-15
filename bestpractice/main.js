@@ -42,6 +42,7 @@ let layerControl = L.control.layers({
         collapsed: false,
 
 
+
 }).addTo(map);
 
 
@@ -81,7 +82,7 @@ for (let entry of UMWELT) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i> Weiter zur Organisation</a></p>
-`,{maxHeight: 325}).addTo(overlays.UmweltKlima);
+`,{maxHeight: 320}).addTo(overlays.UmweltKlima);
 }
 
 for (let entry of SOZIALES) {
@@ -93,7 +94,7 @@ for (let entry of SOZIALES) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href=" mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-`,{maxHeight: 325}).addTo(overlays.Soziales);
+`,{maxHeight: 320}).addTo(overlays.Soziales);
 }
 
 for (let entry of STADTENTWICKLUNG) {
@@ -105,7 +106,7 @@ for (let entry of STADTENTWICKLUNG) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-`,{maxHeight: 325}).addTo(overlays.Stadtentwicklung);
+`,{maxHeight: 320}).addTo(overlays.Stadtentwicklung);
 }
 
 
@@ -118,7 +119,7 @@ for (let entry of GESUNDHEIT) {
     <h3>Adresse: ${entry.Adresse}</h3>
     <h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     <p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
-`,{maxHeight: 325}).addTo(overlays.Gesundheit);
+`,{maxHeight: 320}).addTo(overlays.Gesundheit);
 }
 
 
