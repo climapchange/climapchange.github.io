@@ -12,7 +12,7 @@ let overlays = {
 };
 
 let bounds = [
-    [-80, -180], // Southwest coordinates
+    [-82, -180], // Southwest coordinates
     [90, 180] // Northeast coordinates
 ]
 
@@ -26,7 +26,8 @@ const map = L.map("map", {
     maxBounds: bounds
 });
 
-map.setMinZoom( map.getBoundsZoom( map.options.maxBounds ) );
+//Maximalen Zoom-Out begrenzen
+map.setMinZoom(map.getBoundsZoom(map.options.maxBounds));
 
 let overlayControl = L.control.layers({
     "CO2-Emission pro Jahr": overlays.coTwo,
@@ -93,8 +94,6 @@ function onEachFeature(feature, layer) {
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
 //overlays.coTwo.addTo(map)
-//Zoom an Polys anpassen
-map.fitBounds(overlays.coTwo.getBounds());
 
 //Style der Polys CO2
 function styleCo(feature) {
