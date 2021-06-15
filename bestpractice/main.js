@@ -33,10 +33,10 @@ let overlays = {
 //  Overlays zur Layer-Control hinzufügen
 let layerControl = L.control.layers({
 },{
-    "Stadtentwicklung": overlays.Stadtentwicklung,
-    "Gesundheit": overlays.Gesundheit,
-    "Soziales": overlays.Soziales,
-    "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima}, 
+    "<img src='icons/city.png' /> Stadtentwicklung": overlays.Stadtentwicklung,
+    "<img src='icons/health.png' /> Gesundheit": overlays.Gesundheit,
+    "<img src='icons/sozial.png' /> Soziales": overlays.Soziales,
+    "<img src='icons/tree.png' /> Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima}, 
     {
         position: 'bottomleft',
         collapsed: false,
@@ -131,11 +131,6 @@ for (let entry of GESUNDHEIT) {
     //<h3><i class="far fa-envelope mr-3" style="margin-right: 0.3em"></i><a href="mailto:${entry.Mail}" target="_blank">${entry.Mail}</a></h3>
     //<p><a href="${entry.weblink}"><i class="fas fa-external-link-alt mr-3" style="margin-right: 0.3em"></i>Weiter zur Organisation</a></p>
     //`).addTo(overlays.Gesundheit);
-    
-
-
-
-
 
 
 // Leaflet hash
@@ -148,5 +143,4 @@ var miniMap = new L.Control.MiniMap(
         minimized: false
     }
 ).addTo(map);
-
 
