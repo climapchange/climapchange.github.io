@@ -27,7 +27,6 @@ let overlays = {
     Stadtentwicklung: L.markerClusterGroup(),
     Gesundheit: L.markerClusterGroup(),
     Soziales: L.markerClusterGroup(),
-    
 };
 
 //  Overlays zur Layer-Control hinzufügen
@@ -40,8 +39,6 @@ let layerControl = L.control.layers({
     {
         position: 'bottomleft',
         collapsed: false,
-
-
 
 }).addTo(map);
 
