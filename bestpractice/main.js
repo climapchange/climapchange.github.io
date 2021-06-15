@@ -1,7 +1,7 @@
 
 let bounds = [
     [46, 8], // Southwest coordinates
-    [50, 18] // Northeast coordinates
+    [51, 18] // Northeast coordinates
 ]
 
 const map = L.map('map', {
@@ -38,10 +38,12 @@ let layerControl = L.control.layers({
     "Soziales": overlays.Soziales,
     "Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima}, 
     {
-        position: 'topright',
+        position: 'bottomleft',
         collapsed: false,
 
+
 }).addTo(map);
+
 
 
 // alle Overlays nach dem Laden anzeigen
