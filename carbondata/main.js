@@ -93,7 +93,7 @@ function onEachFeature(feature, layer) {
 
 //Länder-Polygone hinzugefuegt und zum Overlay hinzugefuegt
 L.geoJson(COUNTRY).addTo(overlays.coTwo)
-overlays.coTwo.addTo(map)
+//overlays.coTwo.addTo(map)
 
 //Style der Polys CO2
 function styleCo(feature) {
@@ -171,7 +171,7 @@ geojson = L.geoJson(COUNTRY, {
 // CO2 kumuliert
 
 L.geoJson(COUNTRY).addTo(overlays.coTwoCumu)
-//overlays.coTwoCumu.addTo(map)
+overlays.coTwoCumu.addTo(map)
 
 function styleCumu(feature) {
     return {
