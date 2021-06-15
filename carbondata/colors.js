@@ -3,7 +3,6 @@ function getColorCo(data) {
         data > 10000 ? '#b10026' :
         data > 1000 ? '#b10026' :
         data > 500 ? '#e31a1c' :
-        data > 200 ? '#fc4e2a' :
         data > 100 ? '#fd8d3c' :
         data > 50 ? '#feb24c' :
         data > 20 ? '#fed976' :
