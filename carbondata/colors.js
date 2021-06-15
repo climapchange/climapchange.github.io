@@ -48,7 +48,7 @@ function getColorCoCumu(data) {
         '#ffffcc';
 }
 
-function getColorCoCumuShare(data) {
+function getColorCumuShare(data) {
     return data > 99998 ? '#bdbdbd' :
         data > 25 ? '#b10026' :
         data > 20 ? '#e31a1c' :

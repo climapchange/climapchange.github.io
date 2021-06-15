@@ -204,7 +204,7 @@ overlays.coTwoCumuShare.addTo(map)
 
 function styleCumuShare(feature) {
     return {
-        fillColor: getColorCoCumuShare(getData(feature.properties.name_long, "share_global_cumulative_co2")),
+        fillColor: getColorCumuShare(getData(feature.properties.name_long, "share_global_cumulative_co2")),
         weight: 2,
         opacity: 0.5,
         color: 'white',
@@ -212,6 +212,7 @@ function styleCumuShare(feature) {
         fillOpacity: 0.5
     };
 }
+
 L.geoJson(COUNTRY, {
     style: styleCumuShare
 }).addTo(overlays.coTwoCumuShare);
