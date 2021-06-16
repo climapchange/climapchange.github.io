@@ -1,4 +1,4 @@
-//Karte 2: SDG-Watch Austria Mitglieder
+//Karte 2: SDG-Watch Austria - Mitgliedsorganisationen
 
 //create bounds, so map keeps focus on Austria
 let bounds = [
