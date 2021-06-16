@@ -181,11 +181,27 @@ geojson = L.geoJson(COUNTRY, {
 
 //Funktion um noMatch zu benennen
 function getDataPrint(polyName, dataType, einheit) {
-    if(getData(polyName, dataType) === 9999999) {
+    if (getData(polyName, dataType) === 9999999) {
         return "Keine Daten vorhanden";
-      } else {
+    } else {
         return getData(polyName, dataType).toFixed(1) + einheit;
-      }
+    }
+}
+
+function whichLayer(props) {
+    if (map.hasLayer(overlays.coTwo) === true) {
+        return getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr");
+    } else if (map.hasLayer(overlays.coTwoGlobalShare) === true) {
+        return getDataPrint(props.name_long, "share_global_co2", " % </b><br/> der globalen Emissionen pro Jahr");
+    } else if (map.hasLayer(overlays.coTwoPerCapita) === true) {
+        return getDataPrint(props.name_long, "co2_per_capita", " t </b><br/>  CO<sub>2</sub>-Emissionen pro Person und Jahr");
+    } else if (map.hasLayer(overlays.coTwoCumu) === true) {
+        return getDataPrint(props.name_long, "cumulative_co2", " Mio. t </b><br/> kumulierte Emissionen");
+    } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
+        return getDataPrint(props.name_long, "share_global_cumulative_co2", " % </b><br/> der globalen kumulierten Emissionen");
+    } else {
+        return "Keine Daten vorhanden"
+    }
 }
 
 // Anzeige oben Rechts. Style siehe CSS
@@ -198,11 +214,7 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = (props ?
         '<b>' + props.name + '</b><hr></hr>' +
-        getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "share_global_co2", " % </b><br/> der globalen Emissionen pro Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "co2_per_capita", " t </b><br/>  CO<sub>2</sub>-Emissionen pro Person und Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "cumulative_co2", " Mio. t </b><br/> kumulierte Emissionen") + '<hr></hr>' +
-        getDataPrint(props.name_long, "share_global_cumulative_co2", " % </b><br/> der globalen kumulierten Emissionen") :
+        whichLayer(props) :
         'Hover über einen Staat');
 };
 info.addTo(map);
