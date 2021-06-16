@@ -12,13 +12,13 @@ let overlays = {
 };
 
 let bounds = [
-    [-82, -180], // Southwest coordinates
+    [-80, -180], // Southwest coordinates
     [90, 180] // Northeast coordinates
 ]
 
 const map = L.map("map", {
     fullscreenControl: true,
-    center: [15, 0],
+    center: [25, 0],
     zoom: 2,
     layers: [
         baselayers.standard
@@ -30,7 +30,7 @@ const map = L.map("map", {
 map.setMinZoom(map.getBoundsZoom(map.options.maxBounds));
 
 let overlayControl = L.control.layers({
-    "CO2-Emission pro Jahr": overlays.coTwo,
+    "CO<sub>2</sub>-Emission pro Jahr": overlays.coTwo,
     "Anteil jährlicher Emissionen": overlays.coTwoGlobalShare,
     "Emissionen pro Person": overlays.coTwoPerCapita,
     "Kumulierte Emissionen": overlays.coTwoCumu,
@@ -239,7 +239,7 @@ function getClasses() {
         classes = [0, 500, 1000, 5000, 10000, 50000, 100000, 200000, 400000];
         return classes;
     } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
-        classes = [0, 0.5, 1, 5, 10, 15, 20, 25];
+        classes = [0, 0.5, 1, 5, 10, 15, 20];
         return classes;
     } else {
         return [0]
@@ -285,7 +285,7 @@ legend.addTo(map);
 
 // Funktion, dass sich bei jedem Layer-Switch die Legende ändert
 map.on('baselayerchange', function (eventLayer) {
-    if (eventLayer.name === 'CO2-Emission pro Jahr') {
+    if (eventLayer.name === 'CO<sub>2</sub>-Emission pro Jahr') {
         this.removeControl(legend);
         legend.addTo(this);
     } else if (eventLayer.name === 'Anteil jährlicher Emissionen') {
