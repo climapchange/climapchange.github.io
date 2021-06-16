@@ -285,7 +285,6 @@ legend.addTo(map);
 
 // Funktion, dass sich bei jedem Layer-Switch die Legende ändert
 map.on('baselayerchange', function (eventLayer) {
-    // Switch to the Permafrost legend...
     if (eventLayer.name === 'CO2-Emission pro Jahr') {
         this.removeControl(legend);
         legend.addTo(this);
@@ -301,7 +300,7 @@ map.on('baselayerchange', function (eventLayer) {
     } else if (eventLayer.name === 'Anteil kumulierter Emissionen') {
         this.removeControl(legend);
         legend.addTo(this);
-    } else { // Or switch to the treeline legend...
+    } else {
         this.removeControl(legend);
         legend.addTo(this);
     }

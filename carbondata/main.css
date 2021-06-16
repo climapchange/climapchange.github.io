@@ -104,6 +104,7 @@ a:hover {
 .legend {
     line-height: 18px;
     color: #555;
+    width: auto;
 }
 .legend i {
     width: 18px;
