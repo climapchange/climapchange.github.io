@@ -37,9 +37,11 @@ let overlayControl = L.control.layers({
     "Anteil kumulierter Emissionen": overlays.coTwoCumuShare,
 }, null, {
     position: 'bottomleft',
-    collapsed: false,
+    //collapsed: false,
 }).addTo(map);
 
+map.attributionControl.addAttribution('<a href="https://github.com/owid/co2-data">OWID</a>');
+//map.attributionControl.addAttribution('<a href="https://geojson-maps.ash.ms/">AshKyd</a>');
 
 // FUNKTIONEN UNABHAENGIG VOM OVERLAY!!!
 
@@ -179,30 +181,94 @@ geojson = L.geoJson(COUNTRY, {
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwoCumuShare);
 
-//Funktion um NoMatch zu benennen
+// Funktion um noMatch zu benennen
 function getDataPrint(polyName, dataType, einheit) {
-    if(getData(polyName, dataType) === 9999999) {
+    if (getData(polyName, dataType) === 9999999) {
         return "Keine Daten vorhanden";
-      } else {
+    } else {
         return getData(polyName, dataType).toFixed(1) + einheit;
-      }
+    }
+}
+
+// Funktion um zu ermitteln welcher Layer geöffnet ist und entsprechendes in Info anzuzeigen
+function whichLayer(props) {
+    if (map.hasLayer(overlays.coTwo) === true) {
+        return getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr");
+    } else if (map.hasLayer(overlays.coTwoGlobalShare) === true) {
+        return getDataPrint(props.name_long, "share_global_co2", " % </b><br/> der globalen Emissionen pro Jahr");
+    } else if (map.hasLayer(overlays.coTwoPerCapita) === true) {
+        return getDataPrint(props.name_long, "co2_per_capita", " t </b><br/>  CO<sub>2</sub>-Emissionen pro Person und Jahr");
+    } else if (map.hasLayer(overlays.coTwoCumu) === true) {
+        return getDataPrint(props.name_long, "cumulative_co2", " Mio. t </b><br/> kumulierte Emissionen");
+    } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
+        return getDataPrint(props.name_long, "share_global_cumulative_co2", " % </b><br/> der globalen kumulierten Emissionen");
+    } else {
+        return "Keine Daten vorhanden"
+    }
 }
 
 // Anzeige oben Rechts. Style siehe CSS
 var info = L.control();
 info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this._div = L.DomUtil.create('div', 'info');
     this.update();
     return this._div;
 };
 info.update = function (props) {
     this._div.innerHTML = (props ?
         '<b>' + props.name + '</b><hr></hr>' +
-        getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "share_global_co2", " % </b><br/> der globalen Emissionen pro Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "co2_per_capita", " t </b><br/>  CO<sub>2</sub>-Emissionen pro Person und Jahr") + '<hr></hr>' +
-        getDataPrint(props.name_long, "cumulative_co2", " Mio. t </b><br/> kumulierte Emissionen") + '<hr></hr>' +
-        getDataPrint(props.name_long, "share_global_cumulative_co2", " % </b><br/> der globalen kumulierten Emissionen") :
+        whichLayer(props) :
         'Hover über einen Staat');
 };
 info.addTo(map);
+
+// Legende
+
+function getClasses() {
+    if (map.hasLayer(overlays.coTwo) === true) {
+        classes = [0, 10, 50, 100, 500, 1000, 5000, 10000];
+        return classes;
+    } else if (map.hasLayer(overlays.coTwoGlobalShare) === true) {
+        classes = [0, 0.5, 1, 5, 10, 15, 20, 25];
+        return classes;
+    } else if (map.hasLayer(overlays.coTwoPerCapita) === true) {
+        classes = [0, 1.5, 5, 10, 15, 20];
+        return classes;
+    } else if (map.hasLayer(overlays.coTwoCumu) === true) {
+        classes = [0 ,500, 1000, 5000, 10000, 50000, 100000, 200000, 400000];
+        return classes;
+    } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
+        classes = [0, 0.5, 1, 5, 10, 15, 20, 25];
+        return classes;
+    } else {
+        return [0]
+    }
+}
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        classes = getClasses(),
+        labels = [];
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < classes.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColorCo(classes[i] + 1) + '"></i> ' +
+            classes[i] + (classes[i + 1] ? ' - ' + classes[i + 1] + '<br>' : ' +');
+    }
+    return div;
+};
+
+legend.addTo(map);
+
+/*
+        data > 25 ? '#b10026' :
+        data > 20 ? '#e31a1c' :
+        data > 15 ? '#fc4e2a' :
+        data > 10 ? '#fd8d3c' :
+        data > 5 ? '#feb24c' :
+        data > 1 ? '#fed976' :
+        data > 0.5 ? '#ffeda0' :
+        data > 0 ? '#ffffcc' :
+*/ 

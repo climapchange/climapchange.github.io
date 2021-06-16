@@ -145,6 +145,8 @@ footer {
     color:  rgba(16, 151, 185, 0.89)
 }
 
+
+
 @media screen and (max-width: 900px) {
     main {
         max-width: 90%;
