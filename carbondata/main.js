@@ -37,7 +37,7 @@ let overlayControl = L.control.layers({
     "Anteil kumulierter Emissionen": overlays.coTwoCumuShare,
 }, null, {
     position: 'bottomleft',
-    collapsed: false,
+    //collapsed: false,
 }).addTo(map);
 
 
