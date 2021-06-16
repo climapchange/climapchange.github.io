@@ -224,6 +224,7 @@ info.addTo(map);
 
 // Legende
 
+// Klassengrenzen
 function getClasses() {
     if (map.hasLayer(overlays.coTwo) === true) {
         classes = [0, 10, 50, 100, 500, 1000, 5000, 10000];
@@ -235,7 +236,7 @@ function getClasses() {
         classes = [0, 1.5, 5, 10, 15, 20];
         return classes;
     } else if (map.hasLayer(overlays.coTwoCumu) === true) {
-        classes = [0 ,500, 1000, 5000, 10000, 50000, 100000, 200000, 400000];
+        classes = [0, 500, 1000, 5000, 10000, 50000, 100000, 200000, 400000];
         return classes;
     } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
         classes = [0, 0.5, 1, 5, 10, 15, 20, 25];
@@ -245,7 +246,27 @@ function getClasses() {
     }
 }
 
-var legend = L.control({position: 'bottomright'});
+// Zugriff auf verschiedene Farbrampen
+function getColorName(nr) {
+    if (map.hasLayer(overlays.coTwo) === true) {
+        return getColorCo(nr);
+    } else if (map.hasLayer(overlays.coTwoGlobalShare) === true) {
+        return getColorCoGlobalShare(nr);
+    } else if (map.hasLayer(overlays.coTwoPerCapita) === true) {
+        return getColorCoPerCapita(nr);
+    } else if (map.hasLayer(overlays.coTwoCumu) === true) {
+        return getColorCoCumu(nr);
+    } else if (map.hasLayer(overlays.coTwoCumuShare) === true) {
+        return getColorCoCumuShare(nr);
+    } else {
+        return 'not found'
+    }
+}
+
+// Legende hinzugefuegt
+var legend = L.control({
+    position: 'bottomright'
+});
 
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
@@ -254,7 +275,7 @@ legend.onAdd = function (map) {
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < classes.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColorCo(classes[i] + 1) + '"></i> ' +
+            '<i style="background:' + getColorName(classes[i] + 1) + '"></i> ' +
             classes[i] + (classes[i + 1] ? ' - ' + classes[i + 1] + '<br>' : ' +');
     }
     return div;
@@ -262,13 +283,26 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
-/*
-        data > 25 ? '#b10026' :
-        data > 20 ? '#e31a1c' :
-        data > 15 ? '#fc4e2a' :
-        data > 10 ? '#fd8d3c' :
-        data > 5 ? '#feb24c' :
-        data > 1 ? '#fed976' :
-        data > 0.5 ? '#ffeda0' :
-        data > 0 ? '#ffffcc' :
-*/ 
+// Funktion, dass sich bei jedem Layer-Switch die Legende ändert
+map.on('baselayerchange', function (eventLayer) {
+    // Switch to the Permafrost legend...
+    if (eventLayer.name === 'CO2-Emission pro Jahr') {
+        this.removeControl(legend);
+        legend.addTo(this);
+    } else if (eventLayer.name === 'Anteil jährlicher Emissionen') {
+        this.removeControl(legend);
+        legend.addTo(this);
+    } else if (eventLayer.name === 'Emissionen pro Person') {
+        this.removeControl(legend);
+        legend.addTo(this);
+    } else if (eventLayer.name === 'Kumulierte Emissionen') {
+        this.removeControl(legend);
+        legend.addTo(this);
+    } else if (eventLayer.name === 'Anteil kumulierter Emissionen') {
+        this.removeControl(legend);
+        legend.addTo(this);
+    } else { // Or switch to the treeline legend...
+        this.removeControl(legend);
+        legend.addTo(this);
+    }
+});
