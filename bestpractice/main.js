@@ -15,7 +15,7 @@ const map = L.map('map', {
 
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="https://mapicons.mapsmarker.com">Maps Icon Collection<a/>, <a href="https://www.sdgwatch.at/de/wer-wir-sind/mitglieder/">SDG Watch Austria<a/> contributors'
 }).addTo(map);
 
 
@@ -38,8 +38,8 @@ let layerControl = L.control.layers({}, {
     "<img src='icons/sozial.png' /> Soziales": overlays.Soziales,
     "<img src='icons/tree.png' /> Umwelt, Klima, Landwirtschaft & Tierschutz": overlays.UmweltKlima
 }, {
-    position: 'bottomleft',
-    collapsed: false,
+    position: 'topright',
+    collapsed: true,
 }).addTo(map);
 
 
@@ -153,3 +153,5 @@ L.control.scale({
     imperial: false,
     position: ('topleft')
 }).addTo(map);
+
+
