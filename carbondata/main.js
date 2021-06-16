@@ -40,6 +40,8 @@ let overlayControl = L.control.layers({
     //collapsed: false,
 }).addTo(map);
 
+map.attributionControl.addAttribution('<a href="https://github.com/owid/co2-data">OWID</a>');
+map.attributionControl.addAttribution('<a href="https://geojson-maps.ash.ms/">AshKyd</a>');
 
 // FUNKTIONEN UNABHAENGIG VOM OVERLAY!!!
 
@@ -179,7 +181,7 @@ geojson = L.geoJson(COUNTRY, {
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwoCumuShare);
 
-//Funktion um noMatch zu benennen
+// Funktion um noMatch zu benennen
 function getDataPrint(polyName, dataType, einheit) {
     if (getData(polyName, dataType) === 9999999) {
         return "Keine Daten vorhanden";
@@ -188,6 +190,7 @@ function getDataPrint(polyName, dataType, einheit) {
     }
 }
 
+// Funktion um zu ermitteln welcher Layer geöffnet ist und entsprechendes in Info anzuzeigen
 function whichLayer(props) {
     if (map.hasLayer(overlays.coTwo) === true) {
         return getDataPrint(props.name_long, "co2", " Mio. t </b><br/> CO<sub>2</sub>-Emission pro Jahr");
