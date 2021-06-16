@@ -179,7 +179,7 @@ geojson = L.geoJson(COUNTRY, {
     onEachFeature: onEachFeature
 }).addTo(overlays.coTwoCumuShare);
 
-//Funktion um NoMatch zu benennen
+//Funktion um noMatch zu benennen
 function getDataPrint(polyName, dataType, einheit) {
     if(getData(polyName, dataType) === 9999999) {
         return "Keine Daten vorhanden";
